@@ -16,7 +16,7 @@ const typeDefs = gql`
 
     type Item {
         _id: ID
-        item_id: Int!
+        item_id: String!
         item_desc: String!
         location: String
         quantity1_name: String!
@@ -38,7 +38,7 @@ const typeDefs = gql`
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!): User
-        addItem(item_id: Int!, item_desc: String!, location: String!, quantity1_name: String!, quantity_lvl_1: Int!, quantity2_name: String!, quantity_lvl_2: Int!, quantity3_name: String!, quantity_lvl_3: Int! barcodeId: ID): Item
+        addItem(item_id: String!, item_desc: String!, location: String!, quantity1_name: String!, quantity_lvl_1: Int!, quantity2_name: String!, quantity_lvl_2: Int!, quantity3_name: String!, quantity_lvl_3: Int! barcodeId: ID): Item
     }
 `;
 
