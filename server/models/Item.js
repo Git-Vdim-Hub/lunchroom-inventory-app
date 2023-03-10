@@ -3,8 +3,9 @@ const {Schema, model} = require('mongoose');
 const itemSchema = new Schema(
     {
        item_id: {
-        type: Number,
+        type: String,
         required: 'Item ID required',
+        trim: true
        },
        item_desc: {
         type: String,
