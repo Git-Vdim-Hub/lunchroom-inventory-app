@@ -13,7 +13,8 @@ const resolvers = {
 		},
 		item: async () => {
 			return await Item.findById(args.id);
-		}
+		},
+		
 	},
 	Mutation: {
 		addUser: async (parent, { username, email, password }) => {
