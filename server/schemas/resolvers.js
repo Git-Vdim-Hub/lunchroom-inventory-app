@@ -53,6 +53,11 @@ const resolvers = {
 				scans,
 			});
 		},
+		addBarcode: async (parent, {barcode}) => {
+			return await Barcode.create({
+				barcode
+			});
+		}
 	},
 };
 
