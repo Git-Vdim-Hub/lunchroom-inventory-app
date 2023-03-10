@@ -14,7 +14,12 @@ const resolvers = {
 		item: async () => {
 			return await Item.findById(args.id);
 		},
-		
+		barcodes: async () => {
+			return await Barcode.find({});
+		},
+		barcode: async () => {
+			return await Barcode.findById(args.id);
+		}
 	},
 	Mutation: {
 		addUser: async (parent, { username, email, password }) => {

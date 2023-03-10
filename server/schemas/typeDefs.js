@@ -37,7 +37,7 @@ const typeDefs = gql`
        barcode(barcodeId: ID!): Barcode
     }
     type Mutation {
-        addUser(username: String!, email: String!, password: String!): User
+        addUser(username: String!, email: String!, password: String!): User,
         addItem(item_id: String!, item_desc: String!, location: String!, quantity1_name: String!, quantity_lvl_1: Int!, quantity2_name: String!, quantity_lvl_2: Int!, quantity3_name: String!, quantity_lvl_3: Int! barcodeId: ID): Item
     }
 `;
