@@ -1,17 +1,19 @@
-import React from "react";
 
-import AddItem from "./components/AddItem/index"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddItem from "./components/AddItem"
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 export default function App() {
 	return (
-		<div>
-			<Navbar />
-			<Home />
-			<AddItem />
-			<Footer />
+		<div className="App">
+			<Router>
+				<Navbar />
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/AddItem" element={<AddItem />} />
+					</Routes>
+			</Router>
 		</div>
 	);
 }
