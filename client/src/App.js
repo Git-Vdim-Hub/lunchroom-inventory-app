@@ -1,7 +1,7 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AddItem from "./components/AddItem"
+import AddItem from "./components/AddItem";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -9,10 +9,11 @@ export default function App() {
 		<div className="App">
 			<Router>
 				<Navbar />
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/AddItem" element={<AddItem />} />
-					</Routes>
+				<Login />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/AddItem" element={<AddItem />} />
+				</Routes>
 			</Router>
 		</div>
 	);
