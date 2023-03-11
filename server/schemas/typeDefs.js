@@ -57,10 +57,11 @@ const typeDefs = gql`
 			quantity_lvl_2: Int!
 			quantity3_name: String!
 			quantity_lvl_3: Int!
-			barcodeId: ID
 		): Item
 		addBarcode(itemId: ID!, barcode: String!): Item
 		removeBarcode(itemId: ID!, barcodeId: ID!): Item
+		removeItem(itemId: ID!): Item
+		updateItem(updateItemId: ID!, item_id: String, item_desc: String, location: String, quantity1_name: String, quantity_lvl_1: Int, quantity2_name: String, quantity_lvl_2: Int, quantity3_name: String, quantity_lvl_3: Int): Item
 	}
 `;
 
