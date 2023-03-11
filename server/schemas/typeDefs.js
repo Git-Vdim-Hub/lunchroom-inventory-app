@@ -54,6 +54,7 @@ const typeDefs = gql`
 		): Item
 		addBarcode(itemId: ID!, barcode: String!): Item
 		removeBarcode(itemId: ID!, barcodeId: ID!): Item
+		removeItem(itemId: ID!): Item
 	}
 `;
 
