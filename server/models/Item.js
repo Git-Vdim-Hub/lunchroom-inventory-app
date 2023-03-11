@@ -50,19 +50,19 @@ const itemSchema = new Schema({
 	],
 	last_modified: {
 		type: Date,
-		default: new Date(),
+		default: new Date().getTime(), //returns epoch timestamp
 	},
 });
 
 // virtual to convert epoch timestamp to readable string
 itemSchema.virtual("formatDate").get(function () {
 	const date = this.last_modified;
-	return date.toDateString();
+	return new Date(date).toDateString();
 });
 
 // query middleware to update last_modified with any call to updateOne() on item
 itemSchema.pre("updateOne", function () {
-	this.set({ last_modified: new Date() });
+	this.set({ last_modified: new Date().getTime() });
 });
 
 const Item = model("Item", itemSchema);
