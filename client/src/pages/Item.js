@@ -1,23 +1,39 @@
-import React from "react"; 
+import React, { useState } from "react"; 
 
 export default function Item() {
+    
+    const [test, setTest ] = useState('');
+    function handleChange(event) {
+        const value = event.target.value;
+        setTest(value)
+    }
+
     return(
-        <div className="flex justify-center gap-16 mt-14">
-            <div>
-                <h2>Item ID:</h2>
-                <h2>Description:</h2>
-                <h2>Location:</h2>
+        <div className="flex justify-center gap-10 mt-14">
+            <div className="flex flex-col">
+                <label>Item ID:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4" value={test} onChange={handleChange}/>
+                <label>Description:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4" type="text"/>
+                <label>Location:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4" type="text"/>
                 <div className="mt-6">
-                    <p>Barcodes</p>
+                    <p>Barcodes?</p>
                 </div>
             </div>
-            <div>
-                <p>Level 1 Name:</p>
-                <p>Level 1 Quantity:</p>
-                <p>Level 2 Name:</p>
-                <p>Level 2 Quantity:</p>
-                <p>Level 3 Name:</p>
-                <p>Level 3 Quantity:</p>
+            <div className="flex flex-col">
+                <label>Level 1 Name:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="text"/>
+                <label>Level 1 Quantity:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number"/>
+                <label>Level 2 Name:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="text"/>
+                <label>Level 2 Quantity:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number"/>
+                <label>Level 3 Name:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="text"/>
+                <label>Level 3 Quantity:</label>
+                <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number"/>
             </div>
         </div>
     )
