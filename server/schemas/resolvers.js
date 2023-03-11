@@ -1,5 +1,7 @@
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Item, Barcode } = require("../models");
 const { GraphQLScalarType, Kind } = require("graphql");
+const { signToken } = require("../utils/auth");
 
 // creates new data type: Date
 const dateScalar = new GraphQLScalarType({
@@ -44,8 +46,25 @@ const resolvers = {
 		},
 	},
 	Mutation: {
+		login: async (parent, { username, password }) => {
+			const user = await User.findOne({ username });
+			if (!user) {
+				throw new AuthenticationError("No user with this username found");
+			}
+
+			const correctPassword = await user.verifyPassword(password);
+
+			if (!correctPassword) {
+				throw new AuthenticationError("Password is incorrect");
+			}
+
+			const token = signToken(user);
+			return { token, user };
+		},
 		addUser: async (parent, { username, email, password }) => {
-			return await User.create({ username, email, password });
+			const newUser = await User.create({ username, email, password });
+			const token = signToken(newUser);
+			return { token, newUser };
 		},
 		addItem: async (
 			parent,
