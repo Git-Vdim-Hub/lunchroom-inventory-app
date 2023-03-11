@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 	return (
@@ -6,7 +7,7 @@ export default function Navbar() {
 			<div className="navbar">
 				<button onClick={() => console.log("Takes you to Home")}>Home</button>
 				<button onClick={() => console.log("Takes you to Inventory Page")}>Inventory</button>
-				<button onClick={() => console.log("Takes you to Add Page")}>Add New Item</button>
+				<Link to={"./AddItem"} onClick={() => console.log("Takes you to Add Page")}>Add New Item</Link>
 			</div>
 		</div>
 	);
