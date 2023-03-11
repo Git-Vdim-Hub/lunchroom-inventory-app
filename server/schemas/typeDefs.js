@@ -36,10 +36,8 @@ const typeDefs = gql`
 		user(id: ID!): User
 		items: [Item]
 		item(itemId: ID!): Item
-		barcodes: [Barcode]
 		barcode(barcodeId: ID!): Barcode
 	}
-
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!): User
 		addItem(
@@ -54,6 +52,8 @@ const typeDefs = gql`
 			quantity_lvl_3: Int!
 			barcodeId: ID
 		): Item
+		addBarcode(itemId: ID!, barcode: String!): Item
+		removeBarcode(itemId: ID!, barcodeId: ID!): Item
 	}
 `;
 

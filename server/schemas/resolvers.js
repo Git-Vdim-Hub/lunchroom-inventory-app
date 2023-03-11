@@ -39,6 +39,9 @@ const resolvers = {
 		items: async () => {
 			return await Item.find({});
 		},
+		item: async () => {
+			return await Item.findById(args.id);
+		},
 	},
 	Mutation: {
 		addUser: async (parent, { username, email, password }) => {
@@ -71,6 +74,33 @@ const resolvers = {
 				quantity_lvl_3,
 				scans,
 			});
+		},
+		addBarcode: async (parent, { itemId, barcode }) => {
+			return await Item.findOneAndUpdate(
+				{ _id: itemId },
+				{
+					$addToSet: {
+						scans: { barcode },
+					},
+				},
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
+		},
+		removeBarcode: async (parent, { itemId, barcodeId }) => {
+			return Item.findOneAndUpdate(
+				{ _id: itemId },
+				{
+					$pull: {
+						scans: {
+							_id: barcodeId,
+						},
+					},
+				},
+				{ new: true }
+			);
 		},
 	},
 };
