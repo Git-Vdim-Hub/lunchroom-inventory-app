@@ -1,4 +1,4 @@
-const { User, Item, Barcode } = require("../models");
+const { User, Item } = require("../models");
 
 const resolvers = {
 	Query: {
@@ -61,19 +61,17 @@ const resolvers = {
 			);
 		},
 		removeBarcode: async(parent, {itemId, barcodeId}) => {
-			const barcode = await Barcode.findOneAndDelete(
-				{_id: barcodeId},
-				);
-
-			// await Item.findOneAndUpdate(
-			// 	{
-			// 		scans: [{barcode: delBarcode}]
-			// 	},
-			// 	{
-			// 		$pull: {scans: delBarcode}
-			// 	}
-			// )
-			return barcode;
+			return Item.findOneAndUpdate(
+					{_id: itemId},
+					{
+						$pull: {
+							scans: {
+								_id: barcodeId
+							}
+						}
+					},
+				{ new: true }
+			);
 		}
 	},
 };
