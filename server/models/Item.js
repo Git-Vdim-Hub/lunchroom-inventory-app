@@ -55,9 +55,9 @@ const itemSchema = new Schema({
 });
 
 // virtual to convert epoch timestamp to readable string
-itemSchema.virtual("formatDate").get(function () {
+itemSchema.virtual("formated_date").get(function () {
 	const date = this.last_modified;
-	return new Date(date).toDateString();
+	return new Date(date).toString();
 });
 
 // query middleware to update last_modified with any call to updateOne() on item

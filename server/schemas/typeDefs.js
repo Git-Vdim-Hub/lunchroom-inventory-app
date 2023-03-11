@@ -28,6 +28,7 @@ const typeDefs = gql`
 		quantity_lvl_3: Int!
 		scans: [Barcode]
 		last_modified: Date
+		formated_date: String
 	}
 
 	type Query {
