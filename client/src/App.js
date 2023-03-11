@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddItem from "./pages/AddItem"
 import Home from "./pages/Home";
+import Inventory from "./pages/Inventory"
 import Navbar from "./components/Navbar";
 import Item from "./pages/Item";
 
@@ -12,6 +13,7 @@ export default function App() {
 				<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
+						<Route path="/Inventory" element={<Inventory/>}/>
 						<Route path="/AddItem" element={<AddItem />} />
 						<Route path="/Item" element={<Item/>} />
 					</Routes>
