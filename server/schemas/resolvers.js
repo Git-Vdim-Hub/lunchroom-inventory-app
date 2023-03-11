@@ -13,12 +13,6 @@ const resolvers = {
 		},
 		item: async () => {
 			return await Item.findById(args.id);
-		},
-		barcodes: async () => {
-			return await Barcode.find({});
-		},
-		barcode: async () => {
-			return await Barcode.findById(args.id);
 		}
 	},
 	Mutation: {
@@ -53,10 +47,33 @@ const resolvers = {
 				scans,
 			});
 		},
-		addBarcode: async (parent, {barcode}) => {
-			return await Barcode.create({
-				barcode
-			});
+		addBarcode: async (parent, {itemId, barcode}) => {
+			return await Item.findOneAndUpdate(
+				{_id: itemId},
+				{$addToSet: {
+					scans: {barcode}
+				},
+			},
+			{
+				new: true,
+				runValidators: true,
+			  }
+			);
+		},
+		removeBarcode: async(parent, {itemId, barcodeId}) => {
+			const barcode = await Barcode.findOneAndDelete(
+				{_id: barcodeId},
+				);
+
+			// await Item.findOneAndUpdate(
+			// 	{
+			// 		scans: [{barcode: delBarcode}]
+			// 	},
+			// 	{
+			// 		$pull: {scans: delBarcode}
+			// 	}
+			// )
+			return barcode;
 		}
 	},
 };

@@ -45,10 +45,14 @@ const itemSchema = new Schema(
         type: Number,
         required: true
        },
-       scans: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Barcode'
-       }]  
+       scans: [       
+            {
+                barcode: {
+                    type: String,
+                    unique: true
+                }
+            }
+        ]  
     },
 );
 
