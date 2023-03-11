@@ -1,4 +1,4 @@
-const { User, Item, Barcode } = require("../models");
+const { User, Item } = require("../models");
 
 const resolvers = {
 	Query: {
@@ -11,6 +11,9 @@ const resolvers = {
 		items: async () => {
 			return await Item.find({});
 		},
+		item: async () => {
+			return await Item.findById(args.id);
+		}
 	},
 	Mutation: {
 		addUser: async (parent, { username, email, password }) => {
@@ -44,6 +47,32 @@ const resolvers = {
 				scans,
 			});
 		},
+		addBarcode: async (parent, {itemId, barcode}) => {
+			return await Item.findOneAndUpdate(
+				{_id: itemId},
+				{$addToSet: {
+					scans: {barcode}
+				},
+			},
+			{
+				new: true,
+				runValidators: true,
+			  }
+			);
+		},
+		removeBarcode: async(parent, {itemId, barcodeId}) => {
+			return Item.findOneAndUpdate(
+					{_id: itemId},
+					{
+						$pull: {
+							scans: {
+								_id: barcodeId
+							}
+						}
+					},
+				{ new: true }
+			);
+		}
 	},
 };
 
