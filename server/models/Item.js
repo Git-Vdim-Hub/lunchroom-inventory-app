@@ -46,7 +46,6 @@ const itemSchema = new Schema({
 		{
 			barcode: {
 				type: String,
-				unique: true,
 			},
 		},
 	],
