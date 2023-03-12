@@ -11,15 +11,12 @@ export default function Navbar() {
 				<Link to={"./AddItem"} >Add New Item</Link>
 				<Link to={"./Item"}>Item Page</Link> */}
 			</div>
-			{/* <div className="flex justify-end gap-5">
-				<div>
-					<Link to={"/"} className="bg-red-400 p-2 border border-2 border-red-600 border-t-0" >Home</Link>
-				</div>
-				<div>
-					<Link to={"./Inventory"}  className="bg-red-400 p-2 border border-2 border-red-600 " >Inventory</Link>
-				</div>
-				<Link to={"./AddItem"} className="bg-red-400 p-2 border border-2 border-red-600 " >Add New Item</Link>
-			</div> */}
+			<div className="tabs flex justify-end w-full mt-5">
+				<Link to={"/"} className="tab tab-md md:tab-lg tab-lifted">Home</Link>
+				<Link to={"./Inventory"} className="tab tab-md md:tab-lg tab-lifted">Inventory</Link> 
+				<Link to={"./AddItem"} className="tab tab-md md:tab-lg tab-lifted tab-active">Add Item</Link> 
+				<Link to={"./Item"} className="tab tab-md md:tab-lg tab-lifted">Item</Link>
+			</div>
 		</div>
 	);
 }

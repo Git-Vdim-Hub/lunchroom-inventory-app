@@ -49,7 +49,7 @@ export default function Home() {
 								value={itemNumber}
 								className="bg-neutral-base-100 rounded w-5/6 md:w-3/5 mr-1 md:mr-2"
 							></input>
-							<button className="btn border-2 border-neutral-content" type="button" onClick={handleSubmit}>
+							<button className="btn btn-sm border-2 border-neutral-content" type="button" onClick={handleSubmit}>
 								Search
 							</button>
 						</div>
