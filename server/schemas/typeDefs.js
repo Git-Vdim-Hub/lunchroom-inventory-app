@@ -10,6 +10,11 @@ const typeDefs = gql`
 		password: String
 	}
 
+	type Auth {
+		token: ID!
+		user: User
+	}
+
 	type Barcode {
 		_id: ID
 		barcode: String!
@@ -38,8 +43,10 @@ const typeDefs = gql`
 		item(itemId: ID!): Item
 		barcode(barcodeId: ID!): Barcode
 	}
+
 	type Mutation {
-		addUser(username: String!, email: String!, password: String!): User
+		login(username: String!, password: String!): Auth
+		addUser(username: String!, email: String!, password: String!): Auth
 		addItem(
 			item_id: String!
 			item_desc: String!
