@@ -54,21 +54,6 @@ export default function Home() {
 							</button>
 						</div>
 					</div>
-					{/* <form className="grid grid-rows-2">
-						<label className="grid-span-1">Item Number:</label>
-						<div className="grid-span-1">
-							<input
-								name="itemNumber"
-								type="text"
-								onChange={handleInputChange}
-								value={itemNumber}
-								className="bg-red-300 rounded w-2/3"
-							></input>
-							<button type="button" onClick={handleSubmit}>
-								Search
-							</button>
-						</div>
-					</form> */}
 				</div>
 			</div>
 		</div>
