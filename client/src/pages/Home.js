@@ -47,7 +47,7 @@ export default function Home() {
 								type="text"
 								onChange={handleInputChange}
 								value={itemNumber}
-								className="bg-red-300 rounded w-5/6 md:w-3/5 mr-1 md:mr-2"
+								className="bg-red-400 rounded w-5/6 md:w-3/5 mr-1 md:mr-2"
 							></input>
 							<button type="button" onClick={handleSubmit}>
 								Search

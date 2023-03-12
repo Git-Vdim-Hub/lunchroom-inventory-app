@@ -8,7 +8,7 @@ import Item from "./pages/Item";
 
 export default function App() {
 	return (
-		<div className="App">
+		<div className="App ">
 			<Router>
 				<Navbar />
 					<Routes>
