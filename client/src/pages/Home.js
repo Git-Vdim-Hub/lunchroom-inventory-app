@@ -32,16 +32,16 @@ export default function Home() {
 	return (
 		<div className="flex flex-col mt-16">
 			<div className="flex justify-center w-100 my-3">
-				<div className="flex justify-center border border-2 border-red-400 h-32 w-1/2">
+				<div className="flex justify-center border border-2 border-red-400 h-32 w-4/5 lg:w-2/3">
 					<button onClick={handleBarcodeScanner} className="text-xl md:text-2xl">Scan Barcode</button>
 				</div>
 			</div>
 			<p className="flex justify-center my-3 text-xl md:text-2xl">or</p>
 			<div className="flex justify-center">
-				<div className="flex justify-center border border-2 border-red-400 h-32 w-1/2 p-3 my-3">
+				<div className="flex justify-center border border-2 border-red-400 h-32 w-4/5 lg:w-2/3 p-3 my-3">
 					<div className="w-full flex relative justify-center">
 						<label className=" absolute md:text-lg lg:text-xl top-0 left-0">Item Number:</label>
-						<div className="self-center w-full">
+						<div className="self-center w-full mt-4">
 							<input
 								name="itemNumber"
 								type="text"
