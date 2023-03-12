@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { USER_LOGIN } from "../utils/mutations";
 
-export default function () {
+export default function Login() {
 	const [userInfo, setUserInfo] = useState({
 		username: "",
 		password: "",
@@ -20,7 +20,6 @@ export default function () {
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		console.log(userInfo);
 
 		try {
 			const { data } = await login({
