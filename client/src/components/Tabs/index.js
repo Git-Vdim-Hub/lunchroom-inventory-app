@@ -16,7 +16,7 @@ export default function Tabs() {
 	return (
 		<div className="w-full">
 			<div className="tabs justify-end w-full mt-5 z-2 -mb-[4px]">
-				<Link to={"./home"} className="tab tab-md md:tab-lg tab-lifted" onClick={activeTab}>Home</Link>
+				<Link to={"./Home"} className="tab tab-md md:tab-lg tab-lifted" onClick={activeTab}>Home</Link>
 				<Link to={"./Inventory"} className="tab tab-md md:tab-lg tab-lifted" onClick={activeTab}>Inventory</Link> 
 				<Link to={"./AddItem"} className="tab tab-md md:tab-lg tab-lifted tab-active" onClick={activeTab}>Add Item</Link> 
 				<Link to={"./Item"} className="tab tab-md md:tab-lg tab-lifted" onClick={activeTab}>Item</Link>
