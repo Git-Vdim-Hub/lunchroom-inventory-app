@@ -40,7 +40,7 @@ const typeDefs = gql`
 		users: [User]
 		user(id: ID!): User
 		items: [Item]
-		item(itemId: ID!): Item
+		item(id: ID!): Item
 		barcode(barcodeId: ID!): Barcode
 	}
 

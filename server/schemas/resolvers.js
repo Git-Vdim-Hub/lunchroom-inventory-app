@@ -41,7 +41,7 @@ const resolvers = {
 		items: async () => {
 			return await Item.find({});
 		},
-		item: async () => {
+		item: async (parent, args) => {
 			return await Item.findById(args.id);
 		},
 	},
