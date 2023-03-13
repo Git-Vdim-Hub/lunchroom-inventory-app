@@ -11,12 +11,6 @@ export default function Navbar() {
 				<Link to={"./AddItem"} >Add New Item</Link>
 				<Link to={"./Item"}>Item Page</Link> */}
 			</div>
-			<div className="tabs flex justify-end w-full mt-5">
-				<Link to={"/"} className="tab tab-md md:tab-lg tab-lifted">Home</Link>
-				<Link to={"./Inventory"} className="tab tab-md md:tab-lg tab-lifted">Inventory</Link> 
-				<Link to={"./AddItem"} className="tab tab-md md:tab-lg tab-lifted tab-active">Add Item</Link> 
-				<Link to={"./Item"} className="tab tab-md md:tab-lg tab-lifted">Item</Link>
-			</div>
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import AddItem from "./pages/AddItem";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Inventory from "./pages/Inventory";
+import Tabs from "./components/Tabs"
 import Navbar from "./components/Navbar";
 import Item from "./pages/Item";
 
@@ -11,7 +12,8 @@ export default function App() {
 		<div className="App ">
 			<Router>
 				<Navbar />
-				<Login />
+				<Tabs />
+				{/* <Login /> */}
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/Inventory" element={<Inventory />} />
