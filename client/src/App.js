@@ -13,7 +13,7 @@ export default function App() {
 			<Router>
 				<Navbar />
 				<Tabs />
-				{/* <Login /> */}
+				<Login />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/Inventory" element={<Inventory />} />
