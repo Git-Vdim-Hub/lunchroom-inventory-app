@@ -28,7 +28,8 @@ export default function AddItem() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+      <div className="flex w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col ">
           <label htmlFor="item-id">Item ID:</label>
           <input id="item-id" type="text" value={item_id} onChange={(e) => setItemId(e.target.value)} />
     
@@ -56,7 +57,8 @@ export default function AddItem() {
           <label htmlFor="quantity-lvl-3">Quantity Level 3:</label>
           <input id="quantity-lvl-3" type="text" value={quantityLvl3} onChange={(e) => setQuantityLvl3(e.target.value)} />
     
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn">Submit</button>
         </form>
+      </div>
       );
 }
