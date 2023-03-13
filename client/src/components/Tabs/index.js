@@ -15,7 +15,7 @@ export default function Tabs() {
 
 	return (
 		<div className="w-full">
-			<div className="tabs justify-end w-full mt-5 z-2 -mb-[4px]">
+			<div className="tabs justify-end w-full mt-5 px-1 z-2 -mb-[4px]">
 				<Link
 					to={"./Home"}
 					className="tab tab-md md:tab-lg tab-lifted"
@@ -36,13 +36,6 @@ export default function Tabs() {
 					onClick={activeTab}
 				>
 					Add Item
-				</Link>
-				<Link
-					to={"./Item"}
-					className="tab tab-md md:tab-lg tab-lifted"
-					onClick={activeTab}
-				>
-					Item
 				</Link>
 			</div>
 			<div className="border-t-[4px] border-base-300" />
