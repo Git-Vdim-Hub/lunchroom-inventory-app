@@ -57,7 +57,7 @@ export default function AddItem() {
           <label htmlFor="quantity-lvl-3">Quantity Level 3:</label>
           <input id="quantity-lvl-3" type="text" value={quantityLvl3} onChange={(e) => setQuantityLvl3(e.target.value)} />
     
-          <button type="submit" className="btn">Submit</button>
+          <button type="submit" className="btn">Add Item</button>
         </form>
       </div>
       );

@@ -11,12 +11,12 @@ export default function Item() {
     return(
         <div className="flex justify-center gap-10 mt-14">
             <div className="flex flex-col">
-                <label>Item ID:</label>
-                <input className="border border-2 border-zinc-600 rounded mb-4" value={test} onChange={handleChange}/>
+                <label className="label">Item ID:</label>
+                <input className="input input-bordered border-2 border-secondary mb-4 hover:border-secondary-focus" value={test} onChange={handleChange}/>
                 <label>Description:</label>
-                <input className="border border-2 border-zinc-600 rounded mb-4" type="text"/>
+                <input className="input input-bordered border-2 mb-4 h-28" type="text"/>
                 <label>Location:</label>
-                <input className="border border-2 border-zinc-600 rounded mb-4" type="text"/>
+                <input className="input input-bordered border-2 mb-4" type="text"/>
                 <div className="mt-6">
                     <p>Barcodes?</p>
                 </div>
