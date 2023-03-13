@@ -17,7 +17,7 @@ export default function Tabs() {
 		<div className="w-full">
 			<div className="tabs justify-end w-full mt-5 z-2 -mb-[4px]">
 				<Link
-					to={"./home"}
+					to={"./Home"}
 					className="tab tab-md md:tab-lg tab-lifted"
 					onClick={activeTab}
 				>
