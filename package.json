@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/Git-Vdim-Hub/lunchroom-inventory-app#readme",
   "dependencies": {
-    "concurrently": "^7.6.0",
-    "daisyui": "^2.51.3"
+    "concurrently": "^7.6.0"
   }
 }
