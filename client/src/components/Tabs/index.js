@@ -5,7 +5,6 @@ export default function Tabs() {
 	const activeTab = (e) => {
 		// e.preventDefault();
 		const tabs = document.querySelectorAll('.tab');
-		// console.log(tabs)
 		tabs.forEach(tab => {
 			if(tab.classList.contains('tab-active')) {
 				tab.classList.remove('tab-active');
