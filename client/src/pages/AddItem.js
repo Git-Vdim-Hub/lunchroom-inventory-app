@@ -38,24 +38,30 @@ export default function AddItem() {
     
           <label htmlFor="location">Location:</label>
           <input id="location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
-    
-          <label htmlFor="quantity1-name">Quantity 1 Name:</label>
-          <input id="quantity1-name" type="text" value={quantity1Name} onChange={(e) => setQuantity1Name(e.target.value)} />
-    
-          <label htmlFor="quantity-lvl-1">Quantity Level 1:</label>
-          <input id="quantity-lvl-1" type="text" value={quantityLvl1} onChange={(e) => setQuantityLvl1(e.target.value)} />
-    
-          <label htmlFor="quantity2-name">Quantity 2 Name:</label>
-          <input id="quantity2-name" type="text" value={quantity2Name} onChange={(e) => setQuantity2Name(e.target.value)} />
-    
-          <label htmlFor="quantity-lvl-2">Quantity Level 2:</label>
-          <input id="quantity-lvl-2" type="text" value={quantityLvl2} onChange={(e) => setQuantityLvl2(e.target.value)} />
-    
-          <label htmlFor="quantity3-name">Quantity 3 Name:</label>
-          <input id="quantity3-name" type="text" value={quantity3Name} onChange={(e) => setQuantity3Name(e.target.value)} />
-    
-          <label htmlFor="quantity-lvl-3">Quantity Level 3:</label>
-          <input id="quantity-lvl-3" type="text" value={quantityLvl3} onChange={(e) => setQuantityLvl3(e.target.value)} />
+          <div>
+            <label htmlFor="quantity1-name">Quantity 1 Name:</label>
+            <input id="quantity1-name" type="text" value={quantity1Name} onChange={(e) => setQuantity1Name(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="quantity-lvl-1">Quantity Level 1:</label>
+            <input id="quantity-lvl-1" type="text" value={quantityLvl1} onChange={(e) => setQuantityLvl1(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="quantity2-name">Quantity 2 Name:</label>
+            <input id="quantity2-name" type="text" value={quantity2Name} onChange={(e) => setQuantity2Name(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="quantity-lvl-2">Quantity Level 2:</label>
+            <input id="quantity-lvl-2" type="text" value={quantityLvl2} onChange={(e) => setQuantityLvl2(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="quantity3-name">Quantity 3 Name:</label>
+            <input id="quantity3-name" type="text" value={quantity3Name} onChange={(e) => setQuantity3Name(e.target.value)} />
+          </div>
+          <div>
+            <label htmlFor="quantity-lvl-3">Quantity Level 3:</label>
+            <input id="quantity-lvl-3" type="text" value={quantityLvl3} onChange={(e) => setQuantityLvl3(e.target.value)} />
+          </div>
     
           <button type="submit" className="btn">Add Item</button>
         </form>
