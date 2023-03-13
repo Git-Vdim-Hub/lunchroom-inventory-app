@@ -10,7 +10,9 @@ const ItemList = ({items}) => {
             Bin Item ID Item Description Level 1 Qty Level 1 Qty Level 3 Qty
             {items.map((item) =>(
                 <div key={item._id}>{item.location} {item.item_id} {item.item_desc} {item.quantity1_name} {item.quantity_lvl_1} {item.quantity2_name} {item.quantity_lvl_2} {item.quantity3_name} {item.quantity_lvl_3}
-                <button>Edit</button>
+                <Link
+                to={`/Item/${item._id}`}
+                >Edit</Link>
                 <button>Verify</button>
                 </div>
             ))}

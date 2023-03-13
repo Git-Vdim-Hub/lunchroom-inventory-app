@@ -1,8 +1,21 @@
 import React, { useState } from "react"; 
+import {useParams} from 'react-router-dom';
+import { useQuery } from "@apollo/client";
+
+import {QUERY_SINGLE_ITEM} from '../utils/queries'
 
 export default function Item() {
-    
     const [test, setTest ] = useState('');
+    const {itemId} = useParams();
+    const {loading, data} = useQuery(QUERY_SINGLE_ITEM, {
+        variables: {itemId: itemId}
+    })
+
+    const item = data?.item || {};
+
+    if(loading) {
+        return <div>Loading...</div>;
+    }
     function handleChange(event) {
         const value = event.target.value;
         setTest(value)
@@ -12,7 +25,7 @@ export default function Item() {
         <div className="flex justify-center gap-10 mt-14">
             <div className="flex flex-col">
                 <label>Item ID:</label>
-                <input className="border border-2 border-zinc-600 rounded mb-4" value={test} onChange={handleChange}/>
+                <input className="border border-2 border-zinc-600 rounded mb-4" value={item.item_id} onChange={handleChange}/>
                 <label>Description:</label>
                 <input className="border border-2 border-zinc-600 rounded mb-4" type="text"/>
                 <label>Location:</label>
