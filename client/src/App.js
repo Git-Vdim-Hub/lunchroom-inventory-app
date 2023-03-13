@@ -13,9 +13,9 @@ export default function App() {
 			<Router>
 				<Navbar />
 				<Tabs />
-				<Login />
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<Login />} />
+					<Route path="/Home" element={<Home />} />
 					<Route path="/Inventory" element={<Inventory />} />
 					<Route path="/AddItem" element={<AddItem />} />
 					<Route path="/Item" element={<Item />} />
