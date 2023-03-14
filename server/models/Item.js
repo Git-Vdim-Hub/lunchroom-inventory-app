@@ -42,7 +42,13 @@ const itemSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	scans: [String],
+	scans: [
+		{
+			barcode: {
+				type: String,
+			},
+		},
+	],
 	last_modified: {
 		type: Date,
 		default: new Date().getTime(), //returns epoch timestamp
