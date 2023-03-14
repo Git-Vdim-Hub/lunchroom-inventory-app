@@ -9,7 +9,7 @@ import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
 
 import { QUERY_SINGLE_ITEM } from "../utils/queries";
-import { UPDATE_ITEM } from "../utils/mutations";
+import { ADD_BARCODE, UPDATE_ITEM } from "../utils/mutations";
 
 export default function Item() {
 	const { itemId } = useParams();
@@ -18,6 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
+	console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
@@ -27,6 +28,7 @@ export default function Item() {
 	const [lvl2Quantity, setLvl2Quantity] = useState();
 	const [quantity3ItemName, setQuantity3ItemName] = useState();
 	const [lvl3Quantity, setLvl3Quantity] = useState();
+	const [barcode, setBarcode] = useState();
 
 	const [updateItem, { error }] = useMutation(UPDATE_ITEM, {
 		update(cache, { data: { updateItem } }) {
@@ -46,6 +48,31 @@ export default function Item() {
 			}
 		},
 	});
+
+	// useMutation hook with reference to ADD_BARCODE mutation
+	const [addBarcode, { err }] = useMutation(ADD_BARCODE);
+	// create empty array to display in placeholder
+	let arr = [];
+	// function to iterate through barcodes and push each barcode to empty array
+	const displayBarcodes = () => {
+		for (let scan in item.scans) {
+			arr.push(item.scans[scan].barcode);
+		}
+		console.log("arr:", arr);
+		return arr;
+	};
+	// call function
+	displayBarcodes();
+
+	const handleAddBarcode = () => {
+		console.log({ itemId, barcode });
+		addBarcode({ variables: { itemId, barcode } });
+		window.location.reload();
+	};
+
+	const handleManualBarcode = (event) => {
+		setBarcode(event.target.value);
+	};
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -84,8 +111,8 @@ export default function Item() {
 
 		// function to run on successful scan
 		function onScanSuccess(decodedText, decodedResult) {
-			// console.log(`Scan result: ${decodedText}`, decodedResult);
-
+			// set text obtained from scanner to barcode state
+			setBarcode(decodedText);
 			// stop scanning after successful scan
 			html5QrcodeScanner.clear();
 		}
@@ -134,7 +161,8 @@ export default function Item() {
 								<div className="input-group">
 									<input
 										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-										placeholder={"Scan Barcode"}
+										placeholder={arr}
+										onChange={handleManualBarcode}
 										type="text"
 									/>
 									<button
@@ -144,6 +172,9 @@ export default function Item() {
 										<i className="fa-solid fa-barcode text-neutral p-2 px-3"></i>
 									</button>
 								</div>
+								<button onClick={handleAddBarcode} className="btn">
+									Save Barcode
+								</button>
 							</div>
 							<div className="grid grid-cols-2 justify-items-center md:gap-5">
 								<div className="flex flex-col">

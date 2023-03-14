@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
 
 import { Html5QrcodeScanner } from "html5-qrcode";
 
