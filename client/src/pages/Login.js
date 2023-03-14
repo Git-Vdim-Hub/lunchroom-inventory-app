@@ -35,26 +35,33 @@ export default function Login() {
 	};
 
 	return (
-		<div>
-			<h3>Login:</h3>
-			<form>
-				<input
-					name="username"
-					onChange={handleInputChange}
-					placeholder="username"
-					value={userInfo.username}
-					autoComplete="username"
-				></input>
-				<input
-					name="password"
-					onChange={handleInputChange}
-					placeholder="password"
-					value={userInfo.password}
-					type="password"
-					autoComplete="current-password"
-				></input>
-				<button onClick={handleFormSubmit}>Login</button>
-			</form>
+		<div className="grid justify-center items-center h-screen">
+			<div className="border-2 border-neutral p-5 rounded-lg">
+				<h3 className="text-xl text-center text-primary-focus">Login</h3>
+				<form className="flex flex-col md:w-96 gap-8 m-5">
+					<input
+						name="username"
+						className="input input-bordered border-2 border-primary"
+						onChange={handleInputChange}
+						placeholder="username"
+						value={userInfo.username}
+						autoComplete="username"
+					></input>
+					<input
+						name="password"
+						className="input input-bordered border-2 border-primary"
+						onChange={handleInputChange}
+						placeholder="password"
+						value={userInfo.password}
+						type="password"
+						autoComplete="current-password"
+					></input>
+					<button 
+						onClick={handleFormSubmit}
+						className="btn"
+						>Login</button>
+				</form>
+			</div>
 		</div>
 	);
 }
