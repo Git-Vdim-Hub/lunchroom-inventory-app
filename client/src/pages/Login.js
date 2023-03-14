@@ -28,6 +28,7 @@ export default function Login() {
 				variables: { ...userInfo },
 			});
 			Auth.login(data.login.token);
+			window.location.assign("/Home");
 		} catch (err) {
 			console.error(err);
 		}

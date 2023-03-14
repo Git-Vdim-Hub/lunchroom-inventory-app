@@ -20,7 +20,7 @@ export default function Tabs() {
 		<div>
 			{Auth.loggedIn() ? (
 				<div className="w-full">
-					<div className="tabs justify-end w-full mt-5 z-2 -mb-[4px]">
+					<div className="tabs justify-end w-full mt-5 px-1 z-2 -mb-[4px]">
 						<Link
 							to={"./Home"}
 							className="tab tab-md md:tab-lg tab-lifted tab-active"

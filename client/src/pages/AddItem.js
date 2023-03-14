@@ -32,19 +32,22 @@ export default function AddItem() {
 
 	return (
 		<div>
-			{Auth.loggedIn() ? (
-				<div className="flex w-full">
-					<form onSubmit={handleSubmit} className="flex flex-col ">
+			{Auth.loggedIn ? (
+				<div className="flex w-full mt-10">
+					<form onSubmit={handleSubmit} className="grid w-full justify-center">
 						<label htmlFor="item-id">Item ID:</label>
 						<input
+							className="input input-bordered border-2 border-primary md:w-96 lg:w-[550px] mb-4 hover:border-primary-focus"
 							id="item-id"
 							type="text"
 							value={item_id}
 							onChange={(e) => setItemId(e.target.value)}
 						/>
+						{/* <input id="item-id" type="text" value={item_id} onChange={(e) => setItemId(e.target.value)} /> */}
 
 						<label htmlFor="item-desc">Item Description:</label>
-						<input
+						<textarea
+							className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus"
 							id="item-desc"
 							type="text"
 							value={item_desc}
@@ -53,62 +56,79 @@ export default function AddItem() {
 
 						<label htmlFor="location">Location:</label>
 						<input
+							className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"
 							id="location"
 							type="text"
 							value={location}
 							onChange={(e) => setLocation(e.target.value)}
 						/>
+						{/* <input id="location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} /> */}
 
-						<label htmlFor="quantity1-name">Quantity 1 Name:</label>
-						<input
-							id="quantity1-name"
-							type="text"
-							value={quantity1Name}
-							onChange={(e) => setQuantity1Name(e.target.value)}
-						/>
+						<div className="grid grid-cols-2 justify-items-center gap-2">
+							<div className="flex flex-col">
+								<label htmlFor="quantity1-name">Level 1 Name:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity1-name"
+									type="text"
+									value={quantity1Name}
+									onChange={(e) => setQuantity1Name(e.target.value)}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<label htmlFor="quantity-lvl-1">Level 1 Quantity:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity-lvl-1"
+									type="text"
+									value={quantityLvl1}
+									onChange={(e) => setQuantityLvl1(e.target.value)}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<label htmlFor="quantity2-name">Level 2 Name:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity2-name"
+									type="text"
+									value={quantity2Name}
+									onChange={(e) => setQuantity2Name(e.target.value)}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<label htmlFor="quantity-lvl-2">Level 2 Quantity:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity-lvl-2"
+									type="text"
+									value={quantityLvl2}
+									onChange={(e) => setQuantityLvl2(e.target.value)}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<label htmlFor="quantity3-name">Level 3 Name:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity3-name"
+									type="text"
+									value={quantity3Name}
+									onChange={(e) => setQuantity3Name(e.target.value)}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<label htmlFor="quantity-lvl-3">Level 3 Quantity:</label>
+								<input
+									className="input input-bordered border-2 border-primary mb-4 w-32 md:w-48 lg:w-64 hover:border-primary-focus"
+									id="quantity-lvl-3"
+									type="text"
+									value={quantityLvl3}
+									onChange={(e) => setQuantityLvl3(e.target.value)}
+								/>
+							</div>
+						</div>
 
-						<label htmlFor="quantity-lvl-1">Quantity Level 1:</label>
-						<input
-							id="quantity-lvl-1"
-							type="text"
-							value={quantityLvl1}
-							onChange={(e) => setQuantityLvl1(e.target.value)}
-						/>
-
-						<label htmlFor="quantity2-name">Quantity 2 Name:</label>
-						<input
-							id="quantity2-name"
-							type="text"
-							value={quantity2Name}
-							onChange={(e) => setQuantity2Name(e.target.value)}
-						/>
-
-						<label htmlFor="quantity-lvl-2">Quantity Level 2:</label>
-						<input
-							id="quantity-lvl-2"
-							type="text"
-							value={quantityLvl2}
-							onChange={(e) => setQuantityLvl2(e.target.value)}
-						/>
-
-						<label htmlFor="quantity3-name">Quantity 3 Name:</label>
-						<input
-							id="quantity3-name"
-							type="text"
-							value={quantity3Name}
-							onChange={(e) => setQuantity3Name(e.target.value)}
-						/>
-
-						<label htmlFor="quantity-lvl-3">Quantity Level 3:</label>
-						<input
-							id="quantity-lvl-3"
-							type="text"
-							value={quantityLvl3}
-							onChange={(e) => setQuantityLvl3(e.target.value)}
-						/>
-
-						<button type="submit" className="btn">
-							Submit
+						<button type="submit" className="btn my-4">
+							Add Item
 						</button>
 					</form>
 				</div>
