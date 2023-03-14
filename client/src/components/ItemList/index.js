@@ -7,7 +7,7 @@ const ItemList = ({items}) => {
     }
     return (
         <div className="">
-            Bin Item ID Item Description Level 1 Qty Level 1 Qty Level 3 Qty
+            <h2>Bin Item ID Item Description Level 1 Qty Level 1 Qty Level 3 Qty</h2>
             {items.map((item) =>(
                 <div key={item._id}>{item.location} {item.item_id} {item.item_desc} {item.quantity1_name} {item.quantity_lvl_1} {item.quantity2_name} {item.quantity_lvl_2} {item.quantity3_name} {item.quantity_lvl_3}
                 <Link

@@ -97,7 +97,7 @@ export default function Item() {
 			{Auth.loggedIn() ? (
 				<div>
 					<div id="reader"></div>
-					<div className="flex flex-col md:flex-row justify-center gap-10 mt-14 m-8">
+					<div className="flex flex-col md:flex-row justify-center gap-10 mt-3 md:mt-14 mx-8">
 						<form onSubmit={handleFormSubmit}>
 							<div className="flex flex-col justify-center w-72">
 								<label>Item ID:</label>
@@ -145,7 +145,7 @@ export default function Item() {
 									</button>
 								</div>
 							</div>
-							<div className="grid grid-cols-2 justify-items-center md:gap-5">
+							<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-5">
 								<div className="flex flex-col">
 									<label>Level 1 Name:</label>
 									<input
