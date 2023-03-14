@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { Html5QrcodeScanner } from "html5-qrcode";
 
+import Auth from "../utils/auth";
+import { redirect } from "../utils/helpers";
+
 export default function Home() {
 	const [itemNumber, setItemNumber] = useState("");
 	const [scannedCode, setScannedCode] = useState("");
@@ -51,52 +54,58 @@ export default function Home() {
 	};
 
 	return (
-		<div className="flex flex-col mt-16">
-			<div id="btn-container" className="flex justify-center w-100 my-3">
-				<div className="flex justify-center bg-neutral border border-8 border-neutral-content h-32 w-4/5 lg:w-2/3">
-					<button
-						onClick={() => {
-							handleVisibility();
-							handleBarcodeScanner();
-						}}
-						className="text-xl text-base-100 md:text-2xl"
-					>
-						Scan Barcode
-						<div>{scannedCode}</div>
-					</button>
-				</div>
-			</div>
-
-			<div id="reader" className="hidden"></div>
-
-			<p className="flex justify-center text-neutral my-3 text-xl md:text-2xl">
-				or
-			</p>
-			<div className="flex justify-center">
-				<div className="flex justify-center bg-neutral border border-8 border-neutral-content h-32 w-4/5 lg:w-2/3 p-3 my-3">
-					<div className="w-full flex relative justify-center">
-						<label className=" absolute text-base-100 md:text-lg lg:text-xl top-0 left-0">
-							Item Number:
-						</label>
-						<div className="self-center w-full mt-4">
-							<input
-								name="itemNumber"
-								type="text"
-								onChange={handleInputChange}
-								value={itemNumber}
-								className="bg-neutral-base-100 rounded w-5/6 md:w-3/5 mr-1 md:mr-2"
-							></input>
+		<div>
+			{Auth.loggedIn() ? (
+				<div className="flex flex-col mt-16">
+					<div id="btn-container" className="flex justify-center w-100 my-3">
+						<div className="flex justify-center bg-neutral border border-8 border-neutral-content h-32 w-4/5 lg:w-2/3">
 							<button
-								className="btn btn-sm border-2 border-neutral-content"
-								type="button"
-								onClick={handleSubmit}
+								onClick={() => {
+									handleVisibility();
+									handleBarcodeScanner();
+								}}
+								className="text-xl text-base-100 md:text-2xl"
 							>
-								Search
+								Scan Barcode
+								<div>{scannedCode}</div>
 							</button>
 						</div>
 					</div>
+
+					<div id="reader" className="hidden"></div>
+
+					<p className="flex justify-center text-neutral my-3 text-xl md:text-2xl">
+						or
+					</p>
+					<div className="flex justify-center">
+						<div className="flex justify-center bg-neutral border border-8 border-neutral-content h-32 w-4/5 lg:w-2/3 p-3 my-3">
+							<div className="w-full flex relative justify-center">
+								<label className=" absolute text-base-100 md:text-lg lg:text-xl top-0 left-0">
+									Item Number:
+								</label>
+								<div className="self-center w-full mt-4">
+									<input
+										name="itemNumber"
+										type="text"
+										onChange={handleInputChange}
+										value={itemNumber}
+										className="bg-neutral-base-100 rounded w-5/6 md:w-3/5 mr-1 md:mr-2"
+									></input>
+									<button
+										className="btn btn-sm border-2 border-neutral-content"
+										type="button"
+										onClick={handleSubmit}
+									>
+										Search
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			) : (
+				redirect()
+			)}
 		</div>
 	);
 }

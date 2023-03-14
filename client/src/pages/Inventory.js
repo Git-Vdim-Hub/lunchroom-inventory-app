@@ -1,24 +1,27 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import ItemList from '../components/ItemList';
+import ItemList from "../components/ItemList";
 
 import { QUERY_ITEMS } from "../utils/queries";
 
-export default function Inventory(){
-    const {loading, error, data } = useQuery(QUERY_ITEMS);
+import Auth from "../utils/auth";
+import { redirect } from "../utils/helpers";
 
-    const items = data?.items || "waiting on the data"
+export default function Inventory() {
+	const { loading, error, data } = useQuery(QUERY_ITEMS);
 
-    console.log("query items:", items);
-    return(
-        <main>
-            {loading ? (<div>Loading...</div>) : (
-                <ItemList
-                 items={items}
-                />
-            )}
-            
-        </main>
-    )
+	const items = data?.items || "waiting on the data";
+
+	return (
+		<div>
+			{Auth.loggedIn() ? (
+				<main>
+					{loading ? <div>Loading...</div> : <ItemList items={items} />}
+				</main>
+			) : (
+				redirect()
+			)}
+		</div>
+	);
 }
