@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import React, { useState} from "react"; 
 import {useParams} from 'react-router-dom';
-=======
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
->>>>>>> d4720023d887d31f0d0bedcacf969fd1c173afb3
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 
@@ -36,11 +31,12 @@ export default function Item() {
     const [updateItem, {error}] = useMutation(UPDATE_ITEM, {
         update(cache, {data: {updateItem}}) {
             try{
-                const {items} = cache.readQuery({query: QUERY_SINGLE_ITEM});
+                const {item} = cache.readQuery({query: QUERY_SINGLE_ITEM, variables: {itemId: itemId}});
+                console.log(item);
 
                 cache.writeQuery({
                     query: QUERY_SINGLE_ITEM,
-                    data: {items: [updateItem, ...items]}
+                    data: {item: [updateItem, item]}
                 })
             } catch (e) {
                 console.error(e)

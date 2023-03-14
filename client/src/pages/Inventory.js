@@ -11,15 +11,17 @@ import { redirect } from "../utils/helpers";
 export default function Inventory() {
 	const { loading, error, data } = useQuery(QUERY_ITEMS);
 
+	const items = data?.items || "waiting on the data";
 
-    return(
-        <main>
-            {loading ? (<div>Loading...</div>) : (
-                <ItemList
-                 items={items}
-                />
-            )}
-            
-        </main>
-    )
+	return (
+		<div>
+			{Auth.loggedIn() ? (
+				<main>
+					{loading ? <div>Loading...</div> : <ItemList items={items} />}
+				</main>
+			) : (
+				redirect()
+			)}
+		</div>
+	);
 }
