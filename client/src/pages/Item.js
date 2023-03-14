@@ -38,7 +38,7 @@ export default function Item() {
 		<div>
 			{Auth.loggedIn() ? (
 				<div>
-					<div className="flex flex-col md:flex-row justify-center gap-10 mt-14 m-8">
+					<div className="flex flex-col md:flex-row justify-center gap-10 mt- m-8">
 						<div className="flex flex-col justify-center w-72">
 							<label>Item ID:</label>
 							<input
@@ -64,7 +64,13 @@ export default function Item() {
 								type="text"
 							/>
 							<div className="mt-6">
-								<p>Barcodes?</p>
+								<label>Barcodes?</label>
+								<div className="input-group">
+									<input className="input input-bordered border-2 border-primary w-72"/>	
+									<button className="border border-2 border-primary-focus bg-primary">
+									<i class="fa-solid fa-barcode text-neutral p-2 px-3"></i>
+									</button>
+								</div>	
 							</div>
 						</div>
 						<div className="grid grid-cols-2 justify-items-center md:gap-5">
