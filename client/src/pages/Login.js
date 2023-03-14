@@ -8,7 +8,7 @@ export default function Login() {
 		username: "",
 		password: "",
 	});
-	const [login, { error, data }] = useMutation(USER_LOGIN);
+	const [loginMutation, { error, data }] = useMutation(USER_LOGIN);
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -22,19 +22,20 @@ export default function Login() {
 		event.preventDefault();
 
 		try {
-			const { data } = await login({
+			// returns token and username if password validation passes
+			const { data } = await loginMutation({
 				variables: { ...userInfo },
 			});
-
 			Auth.login(data.login.token);
 		} catch (err) {
 			console.error(err);
 		}
 	};
+
 	return (
 		<div>
 			<h3>Login:</h3>
-			<form onSubmit={handleFormSubmit}>
+			<form>
 				<input
 					name="username"
 					onChange={handleInputChange}
@@ -50,7 +51,7 @@ export default function Login() {
 					type="password"
 					autoComplete="current-password"
 				></input>
-				<button type="submit">Login</button>
+				<button onClick={handleFormSubmit}>Login</button>
 			</form>
 		</div>
 	);
