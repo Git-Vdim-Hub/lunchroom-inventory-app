@@ -42,13 +42,6 @@ export default function Tabs() {
 						>
 							Add Item
 						</Link>
-						<Link
-							to={"./Item"}
-							className="tab tab-md md:tab-lg tab-lifted"
-							onClick={activeTab}
-						>
-							Item
-						</Link>
 					</div>
 					<div className="border-t-[4px] border-base-300" />
 				</div>
