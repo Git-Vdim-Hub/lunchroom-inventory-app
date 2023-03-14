@@ -1,7 +1,7 @@
 # Lunchroom Inventory
 
 ## Description
-In many schools all across the country, the lunchroom is typically the most neglected area when it comes to updating technology for checking inventory.  This process typically involves printing out 40+ pages worth of inventory items, many of those items do not apply to the individual school as each level (Elementary, Middle, and High) have different requirements and types of food items to be served to the students.  The issue with this fact is that the list of all items in the district are all compiled into one single inventory list.  While the pages are being printed, the Cafe Manager is grabbing a legal pad, and starting the count by writing down the description of each item in the freezer, cooler, and stock room, as well as physically counting each item by hand. Once everything is counted, then the entire list must be transferred to the printed list, which can be very time consuming looking for each individual item, and then transferring the counts to the page.  Then, once all that is done, the manager then has to transfer all of that information into the computer program that requires every field to be filled in with the count, or, if the item is not used at the school, it must contain a zero.  This process can take anywhere from 8 to 12 hours to complete, wasting time, and money. 
+In many schools, the lunchroom is typically the most neglected area when updating technology for checking inventory. This process typically involves printing out 50+ pages worth of inventory items. Many of those items do not apply to the individual school at each level (Elementary, Middle, and High). Each has different requirements and types of food items to serve to the students. The issue is that the entirety of the items in inventory is compiled into one single inventory list. While the pages are printed, the Cafe Manager, using a legal pad, starts the count by writing down the description of each item in the freezer, cooler, and stock room while physically counting each item by hand. Once the count has been completed, the entire list must be transferred to the printed list, which can be very time-consuming looking for each item and then transferring the counts to the page. Once all that is complete, the manager has to input all of that information into the computer program that requires every field to be filled in with the count, or, if the item is not used at the school, it must contain a zero. This process can take anywhere from 8 to 12 hours to complete, wasting time, and money.
 
 ## Table of Contents
 [Description](#description)     
@@ -31,7 +31,8 @@ While this is a prototype application for an existing issue, unfortunately we do
 ***Insert Photos Here***
 
 ## Live Link
-[Lunchroom Inventory](https://lunchroominventory.herokuapp.com/)      
+[Lunchroom Inventory](https://lunchroominventory.herokuapp.com/)       
+         
 ## Contact
 [Vadim](https://github.com/Git-Vdim-Hub)      
 [Jeremy](https://github.com/jeremystevens515)       
@@ -39,10 +40,18 @@ While this is a prototype application for an existing issue, unfortunately we do
 [Jonathan](https://github.com/jjray84)      
 
 ## Technologies Used
+* Apollo     
+* bcrypt     
+* Concurrently      
+* Express   
+* Graph QL      
+* html5-QRcode
+* jsonwebtoken             
+* JWT-Decode     
+* Mongo DB        
+* Mongoose     
+* Node JS     
+* Nodemon          
 * REACT     
-* GraphQL     
-* MongoDB      
-* Mongoose       
-* NodeJS      
-* Express      
-* Apollo       
+* Router           
+* Tailwind/Daisy UI      
