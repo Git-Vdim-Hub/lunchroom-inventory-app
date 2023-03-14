@@ -18,7 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
-	console.log(item);
+	// console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
@@ -37,7 +37,7 @@ export default function Item() {
 					query: QUERY_SINGLE_ITEM,
 					variables: { itemId: itemId },
 				});
-				console.log(item);
+				// console.log(item);
 
 				cache.writeQuery({
 					query: QUERY_SINGLE_ITEM,
@@ -56,9 +56,9 @@ export default function Item() {
 	// function to iterate through barcodes and push each barcode to empty array
 	const displayBarcodes = () => {
 		for (let scan in item.scans) {
-			arr.push(item.scans[scan].barcode);
+			arr.push(item.scans[scan]);
 		}
-		console.log("arr:", arr);
+		// console.log("arr:", arr);
 		return arr;
 	};
 	// call function
@@ -74,6 +74,9 @@ export default function Item() {
 		setBarcode(event.target.value);
 	};
 
+	const removeBarcode = (event) => {
+		console.log(event.target.parentElement);
+	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 
@@ -161,7 +164,7 @@ export default function Item() {
 								<div className="input-group">
 									<input
 										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-										placeholder={arr}
+										placeholder={item.scans[0].barcode}
 										onChange={handleManualBarcode}
 										type="text"
 									/>
@@ -172,9 +175,44 @@ export default function Item() {
 										<i className="fa-solid fa-barcode text-neutral p-2 px-3"></i>
 									</button>
 								</div>
-								<button onClick={handleAddBarcode} className="btn">
-									Save Barcode
-								</button>
+								<div>
+									<div className="my-3 space-x-4">
+										<button onClick={handleAddBarcode} className="btn">
+											Save Barcode
+										</button>
+										<label htmlFor="my-modal" className="btn">
+											Edit Barcodes
+										</label>
+									</div>
+									<input
+										type="checkbox"
+										id="my-modal"
+										className="modal-toggle"
+									/>
+									<div className="modal">
+										<div className="modal-box">
+											<h3 className="font-bold text-lg">
+												Registered Barcodes:
+											</h3>
+											<ul className="list-none divide-y my-2">
+												{arr.map((scan) => (
+													<li key={scan._id} className="flex justify-between">
+														<div>{scan.barcode}</div>
+														<button
+															onClick={removeBarcode}
+															className="btn btn-ghost fa-solid fa-trash"
+														></button>
+													</li>
+												))}
+											</ul>
+											<div className="modal-action">
+												<label htmlFor="my-modal" className="btn">
+													Done
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div className="grid grid-cols-2 justify-items-center md:gap-5">
 								<div className="flex flex-col">
