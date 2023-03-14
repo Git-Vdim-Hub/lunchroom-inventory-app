@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState} from "react"; 
 import {useParams} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
@@ -44,7 +44,7 @@ export default function Item() {
         event.preventDefault();
 
         try{
-            const {data} = await updateItem({
+            return await updateItem({
                 variables: {
                     updateItemId: itemId,
                     itemId: item1Id,
@@ -63,60 +63,43 @@ export default function Item() {
         }
     }
     
-    function handleChange(event) {
-        const value = event.target.value;
-        console.log(value);
-        setItemId(value)
-    }
     if(loading) {
         return <div>Loading...</div>;
     }
     return(
-        <div>
-            <div className="flex flex-col md:flex-row justify-center gap-10 mt-14 m-8">
-                <div className="flex flex-col justify-center w-72">
+        <div className="flex justify-center gap-10 mt-14">
+            <form onSubmit={handleFormSubmit}
+            >
+                <div className="flex flex-col">
                     <label>Item ID:</label>
-                    <input className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"  value={itemState?.item_id} onChange={handleChange} placeholder={item.item_id}/>
+                    <input className="border border-2 border-zinc-600 rounded mb-4" onChange={(event)=>{const value = event.target.value;
+                    setItemId(value);}} placeholder={item.item_id}/>
                     <label>Description:</label>
-                    <textarea className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus" value={itemState?.item_desc} type="text" onChange={handleChange} placeholder={item.item_desc}/>
+                    <input className="border border-2 border-zinc-600 rounded mb-4" type="text" onChange={(event)=>{const value = event.target.value; setItemDesc(value);}} placeholder={item.item_desc}/>
                     <label>Location:</label>
-                    <input className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus" value={itemState?.location} onChange={handleChange} placeholder={item.location} type="text"/>
+                    <input className="border border-2 border-zinc-600 rounded mb-4" onChange={(event)=>{const value = event.target.value; setItemLocation(value)}} placeholder={item.location} type="text"/>
                     <div className="mt-6">
                         <p>Barcodes?</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 justify-items-center md:gap-5">
-                    <div className="flex flex-col">
-                        <label>Level 1 Name:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus" value={itemState?.quantity1_name} type="text" onChange={handleChange} placeholder={item.quantity1_name}/>
-                    </div>
-                    <div className="flex flex-col">
-                        <label>Level 1 Quantity:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"  value={itemState?.quantity_lvl_1} type="number" onChange={handleChange} placeholder={item.quantity_lvl_1}/>
-                    </div>
-                    <div className="flex flex-col">
-                        <label>Level 2 Name:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus" value={itemState?.quantity2_name} type="text" onChange={handleChange} placeholder={item.quantity2_name}/>
-                    </div>
-                    <div className="flex flex-col">
-                        <label>Level 2 Quantity:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus" value={itemState?.quantity_lvl_2} type="number" onChange={handleChange} placeholder={item.quantity_lvl_2}/>
-                    </div>
-                    <div className="flex flex-col">
-                        <label>Level 3 Name:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus" value={itemState?.quantity3_name} type="text" onChange={handleChange} placeholder={item.quantity3_name}/>
-                    </div>
-                    <div className="flex flex-col">
-                        <label>Level 3 Quantity:</label>
-                        <input className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus" value={itemState?.quantity_lvl_3} type="number" onChange={handleChange} placeholder={item.quantity_lvl_3}/>
-                    </div>
+                <div className="flex flex-col">
+                    <label>Level 1 Name:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" onChange={(event)=>{const value=event.target.value; setQuantity1ItemName(value)}} placeholder={item.quantity1_name} type="text"/>
+                    <label>Level 1 Quantity:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number" onChange={(event)=>{const value=event.target.value; setLvl1Quantity(value)}} placeholder={item.quantity_lvl_1}/>
+                    <label>Level 2 Name:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="text" onChange={(event)=>{const value = event.target.value; setQuantity2ItemName(value)}} placeholder={item.quantity2_name}/>
+                    <label>Level 2 Quantity:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number" onChange={(event)=>{const value = event.target.value; setLvl2Quantity(value);}} placeholder={item.quantity_lvl_2}/>
+                    <label>Level 3 Name:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="text" onChange={(event)=>{const value= event.target.value; setQuantity3ItemName(value);}} placeholder={item.quantity3_name}/>
+                    <label>Level 3 Quantity:</label>
+                    <input className="border border-2 border-zinc-600 rounded mb-4 w-16" type="number" onChange={(event)=>{const value = event.target.value; setLvl3Quantity(value)}} placeholder={item.quantity_lvl_3}/>
                 </div>
-            </div>
-            <div className="flex justify-center gap-5">
-                <button className="btn md:w-36">Update</button>
-                <button className="btn md:w-36">Delete</button>
-                <button className="btn md:w-36">Cancel</button>
-            </div>
+                <button type="submit">Update</button>
+                <button>Delete</button>
+                <button>Cancel</button>
+            </form>
         </div>
     )
 }

@@ -10,7 +10,7 @@ export default function Inventory(){
 
     const items = data?.items || "waiting on the data"
 
-    console.log("query items:", items);
+
     return(
         <main>
             {loading ? (<div>Loading...</div>) : (
