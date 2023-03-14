@@ -7,9 +7,31 @@ const ItemList = ({items}) => {
     }
     return (
         <div className="">
-            <h2>Bin Item ID Item Description Level 1 Qty Level 1 Qty Level 3 Qty</h2>
+            {/* <div className="grid grid-row-2 border-2 border-primary rounded">
+                <div className="row-span-1 flex">
+                    <select className="select select-xs select-primary w-36">
+                        <option disabled selected>Bin</option>
+                        <option>Freezer</option>
+                        <option>Cooler</option>
+                        <option>Pantry</option>
+                    </select>
+                    <div className="flex justify-around w-full">
+                        <h2 className="text-sm">Id</h2>
+                        <h2 className="text-sm">Desc</h2>
+                    </div>
+                </div>
+                <div className='row-span-1 flex justify-around'>
+                    <h2 className="text-sm">Lvl 1 Name</h2>
+                    <h2 className="text-sm">Qty</h2>
+                    <h2 className="text-sm">Lvl 2 Name</h2>
+                    <h2 className="text-sm">Qty</h2>
+                    <h2 className="text-sm">Lvl 3 Name</h2>
+                    <h2 className="text-sm">Qty</h2>
+                </div>
+            </div> */}
             {items.map((item) =>(
-                <div key={item._id}>{item.location} {item.item_id} {item.item_desc} {item.quantity1_name} {item.quantity_lvl_1} {item.quantity2_name} {item.quantity_lvl_2} {item.quantity3_name} {item.quantity_lvl_3}
+                <div className="border-2 border-primary rounded flex p-5" 
+                    key={item._id}>Bin: {item.location} Id: {item.item_id} Description: {item.item_desc} Name 1: {item.quantity1_name} Qty 1: {item.quantity_lvl_1} Name 2: {item.quantity2_name} Qty 2: {item.quantity_lvl_2} Name 3: {item.quantity3_name} Qty 3: {item.quantity_lvl_3}
                 <Link
                 to={`/Item/${item._id}`}
                 >Edit</Link>
