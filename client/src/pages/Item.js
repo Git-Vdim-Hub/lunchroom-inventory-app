@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 import React, { useState} from "react"; 
 import {useParams} from 'react-router-dom';
+=======
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+>>>>>>> d4720023d887d31f0d0bedcacf969fd1c173afb3
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 
-import {QUERY_SINGLE_ITEM} from '../utils/queries'
-import {UPDATE_ITEM} from '../utils/mutations'
+import Auth from "../utils/auth";
+import { redirect } from "../utils/helpers";
+
+import { QUERY_SINGLE_ITEM } from "../utils/queries";
+import { UPDATE_ITEM } from "../utils/mutations";
 
 export default function Item() {
     const {itemId} = useParams();
