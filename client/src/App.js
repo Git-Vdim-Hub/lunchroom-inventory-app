@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./utils/UserContext";
-import Auth from "./utils/auth";
+import { redirect } from "./utils/helpers";
 import AddItem from "./pages/AddItem";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -20,7 +20,7 @@ export default function App() {
 						<Route path="/" element={<Login />} />
 						<Route path="/Home" element={<Home />} />
 						<Route path="/Inventory" element={<Inventory />} />
-						<Route path="/AddItem" element={<AddItem />} />
+						<Route path="/Item" element={<Login />} />
 						<Route path="/Item/:itemId" element={<Item />} />
 					</Routes>
 				</Router>
