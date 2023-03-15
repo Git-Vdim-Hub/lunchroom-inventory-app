@@ -78,6 +78,7 @@ export default function Item() {
 	const handleRemoveBarcode = (event) => {
 		let barcodeId = event.target.parentElement.dataset.key;
 		removeBarcode({ variables: { itemId, barcodeId } });
+		window.location.reload();
 	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -167,7 +168,9 @@ export default function Item() {
 									<input
 										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
 										placeholder={
-											item.scans[0] ? item.scans[0].barcode : "Scan or Enter Barcode"
+											item.scans[0]
+												? item.scans[0].barcode
+												: "Scan or Enter Barcode"
 										}
 										onChange={handleManualBarcode}
 										type="text"
