@@ -41,8 +41,8 @@ const resolvers = {
 		items: async () => {
 			return await Item.find({});
 		},
-		item: async (parent, args) => {
-			return await Item.findById(args.id);
+		item: async (parent, { itemId, barcode }) => {
+			return await Item.findOne({ $or: [{ itemId }, { barcode }] });
 		},
 	},
 	Mutation: {
@@ -121,26 +121,40 @@ const resolvers = {
 				{ new: true }
 			);
 		},
-		removeItem: async (parent, {itemId}) => {
-			return await Item.findOneAndDelete(
-				{_id: itemId},
-			)
+		removeItem: async (parent, { itemId }) => {
+			return await Item.findOneAndDelete({ _id: itemId });
 		},
-		updateItem: async (parent, {updateItemId, item_id, item_desc, location, quantity1_name, quantity_lvl_1, quantity2_name, quantity_lvl_2, quantity3_name, quantity_lvl_3}) => {
+		updateItem: async (
+			parent,
+			{
+				updateItemId,
+				item_id,
+				item_desc,
+				location,
+				quantity1_name,
+				quantity_lvl_1,
+				quantity2_name,
+				quantity_lvl_2,
+				quantity3_name,
+				quantity_lvl_3,
+			}
+		) => {
 			return await Item.findOneAndUpdate(
-				{_id: updateItemId},
-				{item_id: item_id,
-				item_desc: item_desc,
-				location: location,
-				quantity1_name: quantity1_name,
-				quantity_lvl_1: quantity_lvl_1,
-				quantity2_name: quantity2_name,
-				quantity_lvl_2: quantity_lvl_2,
-				quantity3_name: quantity3_name,
-				quantity_lvl_3: quantity_lvl_3},
-				{new: true}
-			)
-		}
+				{ _id: updateItemId },
+				{
+					item_id: item_id,
+					item_desc: item_desc,
+					location: location,
+					quantity1_name: quantity1_name,
+					quantity_lvl_1: quantity_lvl_1,
+					quantity2_name: quantity2_name,
+					quantity_lvl_2: quantity_lvl_2,
+					quantity3_name: quantity3_name,
+					quantity_lvl_3: quantity_lvl_3,
+				},
+				{ new: true }
+			);
+		},
 	},
 };
 

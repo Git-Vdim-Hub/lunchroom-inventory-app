@@ -9,7 +9,7 @@ import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
 
 import { QUERY_SINGLE_ITEM } from "../utils/queries";
-import { UPDATE_ITEM } from "../utils/mutations";
+import { UPDATE_ITEM, ADD_BARCODE, REMOVE_BARCODE } from "../utils/mutations";
 
 export default function Item() {
 	const { itemId } = useParams();
@@ -18,6 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
+	// console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
@@ -27,6 +28,7 @@ export default function Item() {
 	const [lvl2Quantity, setLvl2Quantity] = useState();
 	const [quantity3ItemName, setQuantity3ItemName] = useState();
 	const [lvl3Quantity, setLvl3Quantity] = useState();
+	const [barcode, setBarcode] = useState();
 
 	const [updateItem, { error }] = useMutation(UPDATE_ITEM, {
 		update(cache, { data: { updateItem } }) {
@@ -35,7 +37,7 @@ export default function Item() {
 					query: QUERY_SINGLE_ITEM,
 					variables: { itemId: itemId },
 				});
-				console.log(item);
+				// console.log(item);
 
 				cache.writeQuery({
 					query: QUERY_SINGLE_ITEM,
@@ -47,9 +49,39 @@ export default function Item() {
 		},
 	});
 
+	// useMutation hook with reference to ADD_BARCODE mutation
+	const [addBarcode, { err }] = useMutation(ADD_BARCODE);
+	// create empty array to display in placeholder
+	let arr = [];
+	// function to iterate through barcodes and push each barcode to empty array
+	const displayBarcodes = () => {
+		for (let scan in item.scans) {
+			arr.push(item.scans[scan]);
+		}
+		// console.log("arr:", arr);
+		return arr;
+	};
+	// call function
+	displayBarcodes();
+
+	const handleAddBarcode = () => {
+		console.log({ itemId, barcode });
+		addBarcode({ variables: { itemId, barcode } });
+		window.location.reload();
+	};
+
+	const handleManualBarcode = (event) => {
+		setBarcode(event.target.value);
+	};
+
+	const [removeBarcode] = useMutation(REMOVE_BARCODE);
+	const handleRemoveBarcode = (event) => {
+		let barcodeId = event.target.parentElement.dataset.key;
+		removeBarcode({ variables: { itemId, barcodeId } });
+		window.location.reload();
+	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-
 		try {
 			return await updateItem({
 				variables: {
@@ -58,11 +90,11 @@ export default function Item() {
 					itemDesc: itemDesc,
 					location: itemLocation,
 					quantity1Name: quantity1ItemName,
-					quantityLvl1: lvl1Quantity,
+					quantityLvl1: parseInt(lvl1Quantity),
 					quantity2Name: quantity2ItemName,
-					quantityLvl2: lvl2Quantity,
+					quantityLvl2: parseInt(lvl2Quantity),
 					quantity3Name: quantity3ItemName,
-					quantityLvl3: lvl3Quantity,
+					quantityLvl3: parseInt(lvl3Quantity),
 				},
 			});
 		} catch (err) {
@@ -84,8 +116,8 @@ export default function Item() {
 
 		// function to run on successful scan
 		function onScanSuccess(decodedText, decodedResult) {
-			// console.log(`Scan result: ${decodedText}`, decodedResult);
-
+			// set text obtained from scanner to barcode state
+			setBarcode(decodedText);
 			// stop scanning after successful scan
 			html5QrcodeScanner.clear();
 		}
@@ -134,7 +166,12 @@ export default function Item() {
 								<div className="input-group">
 									<input
 										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-										placeholder={"Scan Barcode"}
+										placeholder={
+											item.scans[0]
+												? item.scans[0].barcode
+												: "Scan or Enter Barcode"
+										}
+										onChange={handleManualBarcode}
 										type="text"
 									/>
 									<button
@@ -143,6 +180,48 @@ export default function Item() {
 									>
 										<i className="fa-solid fa-barcode text-neutral p-2 px-3"></i>
 									</button>
+								</div>
+								<div>
+									<div className="my-3 space-x-4">
+										<button onClick={handleAddBarcode} className="btn">
+											Save Barcode
+										</button>
+										<label htmlFor="my-modal" className="btn">
+											Edit Barcodes
+										</label>
+									</div>
+									<input
+										type="checkbox"
+										id="my-modal"
+										className="modal-toggle"
+									/>
+									<div className="modal">
+										<div className="modal-box">
+											<h3 className="font-bold text-lg">
+												Registered Barcodes:
+											</h3>
+											<ul className="list-none divide-y my-2">
+												{arr.map((scan) => (
+													<li
+														key={scan._id}
+														data-key={scan._id}
+														className="flex justify-between"
+													>
+														<div>{scan.barcode}</div>
+														<button
+															onClick={handleRemoveBarcode}
+															className="btn btn-ghost fa-solid fa-trash"
+														></button>
+													</li>
+												))}
+											</ul>
+											<div className="modal-action">
+												<label htmlFor="my-modal" className="btn">
+													Done
+												</label>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-5">
