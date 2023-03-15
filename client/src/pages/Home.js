@@ -9,7 +9,8 @@ import { QUERY_BY_BARCODE } from "../utils/queries";
 
 export default function Home() {
 	const [itemNumber, setItemNumber] = useState("");
-	const [scannedCode, setScannedCode] = useState("");
+	const [scannedCode, setScannedCode] = useState();
+
 	const { loading, error, data } = useQuery(QUERY_BY_BARCODE, {
 		variables: { barcode: scannedCode },
 	});
