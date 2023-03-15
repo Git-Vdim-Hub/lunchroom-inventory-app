@@ -28,24 +28,7 @@ export default function Item() {
 	const [quantity3ItemName, setQuantity3ItemName] = useState();
 	const [lvl3Quantity, setLvl3Quantity] = useState();
 
-	const [updateItem, { error }] = useMutation(UPDATE_ITEM, {
-		update(cache, { data: { updateItem } }) {
-			try {
-				const { item } = cache.readQuery({
-					query: QUERY_SINGLE_ITEM,
-					variables: { itemId: itemId },
-				});
-				console.log(item);
-
-				cache.writeQuery({
-					query: QUERY_SINGLE_ITEM,
-					data: { item: [updateItem, item] },
-				});
-			} catch (e) {
-				console.error(e);
-			}
-		},
-	});
+	const [updateItem, { error }] = useMutation(UPDATE_ITEM);
 	const [removeItem, {removeError}] = useMutation(REMOVE_ITEM);
 
 	const handleItemRemove = async (event) => {
@@ -62,10 +45,14 @@ export default function Item() {
 		}
 	}
 
+	const handleCancel = (event) => {
+		window.location.assign('/Inventory');
+	}
+
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			return await updateItem({
+			const uItem = await updateItem({
 				variables: {
 					updateItemId: itemId,
 					itemId: item1Id,
@@ -79,6 +66,8 @@ export default function Item() {
 					quantityLvl3: parseInt(lvl3Quantity),
 				},
 			});
+			window.location.reload()
+			return uItem;
 		} catch (err) {
 			console.error(err);
 		}
@@ -242,6 +231,9 @@ export default function Item() {
 						</form>
 						<form onSubmit={handleItemRemove}>
 						<button type="submit" className="btn md:w-36">Delete</button>
+						</form>
+						<form onSubmit={handleCancel}>
+						<button type="submit" className="btn md:w-36">Cancel</button>
 						</form>
 					</div>
 				</div>
