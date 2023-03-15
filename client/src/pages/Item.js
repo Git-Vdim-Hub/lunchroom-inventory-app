@@ -46,6 +46,21 @@ export default function Item() {
 			}
 		},
 	});
+	const [removeItem, {removeError}] = useMutation(REMOVE_ITEM);
+
+	const handleItemRemove = async (event) => {
+		try{
+			const rItem = await removeItem({
+				variables: {
+					itemId: itemId
+				}
+			})
+			window.location.assign('/Inventory');
+			return rItem;
+		}catch (err){
+			console.error(err);
+		}
+	}
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -222,9 +237,11 @@ export default function Item() {
 								<button className="btn md:w-36" type="submit">
 									Update
 								</button>
-								<button className="btn md:w-36">Delete</button>
 								<button className="btn md:w-36">Cancel</button>
 							</div>
+						</form>
+						<form onSubmit={handleItemRemove}>
+						<button type="submit" className="btn md:w-36">Delete</button>
 						</form>
 					</div>
 				</div>
