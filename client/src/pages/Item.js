@@ -9,7 +9,7 @@ import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
 
 import { QUERY_SINGLE_ITEM } from "../utils/queries";
-import { UPDATE_ITEM } from "../utils/mutations";
+import { UPDATE_ITEM, REMOVE_ITEM } from "../utils/mutations";
 
 export default function Item() {
 	const { itemId } = useParams();
