@@ -9,7 +9,7 @@ import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
 
 import { QUERY_SINGLE_ITEM } from "../utils/queries";
-import { ADD_BARCODE, UPDATE_ITEM } from "../utils/mutations";
+import { UPDATE_ITEM, ADD_BARCODE, REMOVE_BARCODE } from "../utils/mutations";
 
 export default function Item() {
 	const { itemId } = useParams();
@@ -74,8 +74,10 @@ export default function Item() {
 		setBarcode(event.target.value);
 	};
 
-	const removeBarcode = (event) => {
-		console.log(event.target.parentElement);
+	const [removeBarcode] = useMutation(REMOVE_BARCODE);
+	const handleRemoveBarcode = (event) => {
+		let barcodeId = event.target.parentElement.dataset.key;
+		removeBarcode({ variables: { itemId, barcodeId } });
 	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -164,7 +166,9 @@ export default function Item() {
 								<div className="input-group">
 									<input
 										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-										placeholder={item.scans[0].barcode}
+										placeholder={
+											item.scans[0] ? item.scans[0].barcode : "Scan or Enter Barcode"
+										}
 										onChange={handleManualBarcode}
 										type="text"
 									/>
@@ -196,10 +200,14 @@ export default function Item() {
 											</h3>
 											<ul className="list-none divide-y my-2">
 												{arr.map((scan) => (
-													<li key={scan._id} className="flex justify-between">
+													<li
+														key={scan._id}
+														data-key={scan._id}
+														className="flex justify-between"
+													>
 														<div>{scan.barcode}</div>
 														<button
-															onClick={removeBarcode}
+															onClick={handleRemoveBarcode}
 															className="btn btn-ghost fa-solid fa-trash"
 														></button>
 													</li>

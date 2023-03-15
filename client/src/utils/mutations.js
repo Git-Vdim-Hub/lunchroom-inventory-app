@@ -69,3 +69,14 @@ export const ADD_BARCODE = gql`
 		}
 	}
 `;
+
+export const REMOVE_BARCODE = gql`
+	mutation removeBarcode($itemId: ID!, $barcodeId: ID!) {
+		removeBarcode(itemId: $itemId, barcodeId: $barcodeId) {
+			scans {
+				barcode
+				_id
+			}
+		}
+	}
+`;
