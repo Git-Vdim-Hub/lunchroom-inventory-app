@@ -15,11 +15,6 @@ const typeDefs = gql`
 		user: User
 	}
 
-	type Barcode {
-		_id: ID
-		barcode: String!
-	}
-
 	type Item {
 		_id: ID
 		item_id: String
@@ -31,7 +26,7 @@ const typeDefs = gql`
 		quantity_lvl_2: Int
 		quantity3_name: String
 		quantity_lvl_3: Int
-		scans: [Barcode]
+		barcodes: [String]
 		last_modified: Date
 		formated_date: String
 	}
@@ -40,8 +35,9 @@ const typeDefs = gql`
 		users: [User]
 		user(id: ID!): User
 		items: [Item]
-		item(id: ID, barcode: String): Item
-		barcode(barcodeId: ID!): Barcode
+		item(id: ID!): Item
+		itemByNum(item_id: String): Item
+		itemByBarcode(barcode: String): Item
 	}
 
 	type Mutation {
@@ -58,8 +54,8 @@ const typeDefs = gql`
 			quantity3_name: String
 			quantity_lvl_3: Int
 		): Item
-		addBarcode(itemId: ID!, barcode: String!): Item
-		removeBarcode(itemId: ID!, barcodeId: ID!): Item
+		addBarcode(itemId: ID!, barcodes: String!): Item
+		removeBarcode(itemId: ID!, barcode: String!): Item
 		removeItem(itemId: ID!): Item
 		updateItem(
 			updateItemId: ID!

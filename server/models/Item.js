@@ -34,13 +34,7 @@ const itemSchema = new Schema({
 	quantity_lvl_3: {
 		type: Number,
 	},
-	scans: [
-		{
-			barcode: {
-				type: String,
-			},
-		},
-	],
+	barcodes: [String],
 	last_modified: {
 		type: Date,
 		default: new Date().getTime(), //returns epoch timestamp

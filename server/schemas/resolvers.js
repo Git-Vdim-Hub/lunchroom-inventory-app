@@ -41,8 +41,14 @@ const resolvers = {
 		items: async () => {
 			return await Item.find({});
 		},
-		item: async (parent, { itemId, barcode }) => {
-			return await Item.findOne({ $or: [{ itemId }, { barcode }] });
+		item: async (parent, args) => {
+			return await Item.findById(args.id);
+		},
+		itemByNum: async (parent, args) => {
+			return await Item.findOne(args);
+		},
+		itemByBarcode: async (parent, args) => {
+			return await Item.findOne({ barcodes: args.barcode });
 		},
 	},
 	Mutation: {
@@ -99,7 +105,7 @@ const resolvers = {
 				{ _id: itemId },
 				{
 					$addToSet: {
-						scans: { barcode },
+						barcodes: { barcode },
 					},
 				},
 				{
@@ -113,9 +119,7 @@ const resolvers = {
 				{ _id: itemId },
 				{
 					$pull: {
-						scans: {
-							_id: barcodeId,
-						},
+						barcodes: barcode,
 					},
 				},
 				{ new: true }
