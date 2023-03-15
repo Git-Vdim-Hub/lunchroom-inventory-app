@@ -20,7 +20,7 @@ export default function Login() {
 	};
 
 	const handleFormSubmit = async (event) => {
-		event.preventDefault();
+		// event.preventDefault();
 
 		try {
 			// returns token and username if password validation passes
@@ -56,10 +56,9 @@ export default function Login() {
 						type="password"
 						autoComplete="current-password"
 					></input>
-					<button 
-						onClick={handleFormSubmit}
-						className="btn"
-						>Login</button>
+					<button onClick={handleFormSubmit} className="btn">
+						Login
+					</button>
 				</form>
 			</div>
 		</div>
