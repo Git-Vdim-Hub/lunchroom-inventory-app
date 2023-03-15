@@ -82,7 +82,6 @@ export default function Item() {
 	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-
 		try {
 			return await updateItem({
 				variables: {
@@ -91,11 +90,11 @@ export default function Item() {
 					itemDesc: itemDesc,
 					location: itemLocation,
 					quantity1Name: quantity1ItemName,
-					quantityLvl1: lvl1Quantity,
+					quantityLvl1: parseInt(lvl1Quantity),
 					quantity2Name: quantity2ItemName,
-					quantityLvl2: lvl2Quantity,
+					quantityLvl2: parseInt(lvl2Quantity),
 					quantity3Name: quantity3ItemName,
-					quantityLvl3: lvl3Quantity,
+					quantityLvl3: parseInt(lvl3Quantity),
 				},
 			});
 		} catch (err) {

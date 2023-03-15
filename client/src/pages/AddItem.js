@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import { useMutation } from '@apollo/client';
 import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
+import {ADD_ITEM} from '../utils/mutations';
 
 export default function AddItem() {
 	const [item_id, setItemId] = useState("");
@@ -14,20 +15,31 @@ export default function AddItem() {
 	const [quantity3Name, setQuantity3Name] = useState("");
 	const [quantityLvl3, setQuantityLvl3] = useState("");
 
-	const handleSubmit = (event) => {
+	const [addItem, {error}] = useMutation(ADD_ITEM);
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const formData = {
-			item_id: item_id,
-			item_desc: item_desc,
-			location: location,
-			quantity1Name: quantity1Name,
-			quantity2Name: quantity2Name,
-			quantity3Name: quantity3Name,
-			quantityLvl1: quantityLvl1,
-			quantityLvl2: quantityLvl2,
-			quantityLvl3: quantityLvl3,
-		};
-		console.log(formData);
+		try{
+			const item = await addItem({
+				variables: {
+					itemId: item_id,
+					itemDesc: item_desc,
+					location: location,
+					quantity1Name: quantity1Name,
+					quantityLvl1: parseInt(quantityLvl1),
+					quantity2Name: quantity2Name,
+					quantityLvl2: parseInt(quantityLvl2),
+					quantity3Name: quantity3Name,
+					quantityLvl3: parseInt(quantityLvl3)
+				}
+			});
+			window.location.assign('/Inventory');
+			return item;
+		} catch (err){
+			console.error(err);
+			//console.log(error);
+		}
+
 	};
 
 	return (
