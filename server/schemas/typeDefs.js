@@ -16,7 +16,7 @@ const typeDefs = gql`
 	}
 
 	type Item {
-		_id: ID
+		_id: ID!
 		item_id: String
 		item_desc: String
 		location: String
