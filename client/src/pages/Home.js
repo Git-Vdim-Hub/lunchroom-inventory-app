@@ -17,7 +17,7 @@ export default function Home() {
 	console.log(queryByNum?.data);
 
 	const queryByBarcode = useQuery(QUERY_BY_BARCODE, {
-		variables: { barcode: "abc123" },
+		variables: { barcode: scannedCode },
 	});
 	console.log(queryByBarcode?.data);
 
@@ -28,8 +28,13 @@ export default function Home() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log("item number submitted", itemNumber);
-		setItemNumber("");
+		if (itemNumber != "") {
+			window.location.assign(`/Item/${queryByNum?.data.itemByNum._id}`);
+		} else if (scannedCode != "") {
+			window.location.assign(`/Item/${queryByBarcode?.data.itemByBarcode._id}`);
+		} else {
+			return;
+		}
 	};
 
 	const handleVisibility = () => {

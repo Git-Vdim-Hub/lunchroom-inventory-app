@@ -23,22 +23,21 @@ export const QUERY_USERS = gql`
 `;
 
 export const QUERY_ITEMS = gql`
-	query Items {
+	query Query {
 		items {
 			_id
-			item_desc
 			item_id
+			item_desc
 			location
 			quantity1_name
-			quantity2_name
-			quantity3_name
 			quantity_lvl_1
+			quantity2_name
 			quantity_lvl_2
+			quantity3_name
 			quantity_lvl_3
-			scans {
-				barcode
-				_id
-			}
+			barcodes
+			last_modified
+			formated_date
 		}
 	}
 `;
