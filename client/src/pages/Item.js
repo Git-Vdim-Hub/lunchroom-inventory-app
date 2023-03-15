@@ -18,7 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
-	// console.log(item);
+	console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
