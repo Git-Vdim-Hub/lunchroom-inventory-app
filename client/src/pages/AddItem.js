@@ -45,7 +45,7 @@ export default function AddItem() {
 	return (
 		<div>
 			{Auth.loggedIn ? (
-				<div className="flex w-full mt-10">
+				<div className="flex w-full mt-32 md:mt-44">
 					<form onSubmit={handleSubmit} className="grid w-full justify-center">
 						<label htmlFor="item-id">Item ID:</label>
 						<input
