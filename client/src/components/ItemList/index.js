@@ -6,7 +6,7 @@ const ItemList = ({items}) => {
         return <h3>No Items Yet</h3>
     }
     return (
-        <div className="lg:flex lg:flex-wrap lg:justify-around">
+        <div className="lg:flex lg:flex-wrap lg:justify-around mt-40">
             {/* <div className="grid grid-row-2 border-2 border-primary rounded">
                 <div className="row-span-1 flex">
                     <select className="select select-xs select-primary w-36">
@@ -31,7 +31,7 @@ const ItemList = ({items}) => {
             </div> */}
             {items.map((item) =>(
                 <div className="card bg-base-200 shadow-lg border-2 border-primary mt-5 lg:w-96">
-                    <div className="card-body">
+                    <div className="card-body p-3">
                         <h2 className="card-title">Bin: {item.location} Id: {item.item_id}</h2>
                         <p><b>Description:</b> {item.item_desc}</p>
                         <div className="grid grid-cols-2">
@@ -44,7 +44,6 @@ const ItemList = ({items}) => {
                         </div>
                         <div className="card-actions justify-end mt-2">
                             <Link to={`/Item/${item._id}`} className="btn btn-sm md:btn-md btn-primary">Edit</Link>
-                            <button className="btn btn-sm md:btn-md btn-primary">Verify</button>
                         </div>
                     </div>
                 </div>

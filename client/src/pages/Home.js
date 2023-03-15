@@ -96,7 +96,7 @@ export default function Home() {
 	return (
 		<div>
 			{Auth.loggedIn() ? (
-				<div className="flex flex-col mt-16">
+				<div className="flex flex-col mt-36 lg:mt-40">
 					<div id="btn-container" className="flex justify-center w-100 my-3">
 						<div className="flex justify-center bg-neutral border border-8 border-neutral-content h-32 w-4/5 lg:w-2/3">
 							<button
