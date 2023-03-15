@@ -14,15 +14,15 @@ export const USER_LOGIN = gql`
 
 export const ADD_ITEM = gql`
 	mutation Mutation(
-		$itemId: String!
-		$itemDesc: String!
-		$location: String!
-		$quantity1Name: String!
-		$quantityLvl1: Int!
-		$quantity2Name: String!
-		$quantityLvl2: Int!
-		$quantity3Name: String!
-		$quantityLvl3: Int!
+		$itemId: String
+		$itemDesc: String
+		$location: String
+		$quantity1Name: String
+		$quantityLvl1: Int
+		$quantity2Name: String
+		$quantityLvl2: Int
+		$quantity3Name: String
+		$quantityLvl3: Int
 	) {
 		addItem(
 			item_id: $itemId

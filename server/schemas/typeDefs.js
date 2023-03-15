@@ -22,15 +22,15 @@ const typeDefs = gql`
 
 	type Item {
 		_id: ID
-		item_id: String!
-		item_desc: String!
+		item_id: String
+		item_desc: String
 		location: String
-		quantity1_name: String!
-		quantity_lvl_1: Int!
-		quantity2_name: String!
-		quantity_lvl_2: Int!
-		quantity3_name: String!
-		quantity_lvl_3: Int!
+		quantity1_name: String
+		quantity_lvl_1: Int
+		quantity2_name: String
+		quantity_lvl_2: Int
+		quantity3_name: String
+		quantity_lvl_3: Int
 		scans: [Barcode]
 		last_modified: Date
 		formated_date: String
@@ -48,15 +48,15 @@ const typeDefs = gql`
 		login(username: String!, password: String!): Auth
 		addUser(username: String!, email: String!, password: String!): Auth
 		addItem(
-			item_id: String!
-			item_desc: String!
-			location: String!
-			quantity1_name: String!
-			quantity_lvl_1: Int!
-			quantity2_name: String!
-			quantity_lvl_2: Int!
-			quantity3_name: String!
-			quantity_lvl_3: Int!
+			item_id: String
+			item_desc: String
+			location: String
+			quantity1_name: String
+			quantity_lvl_1: Int
+			quantity2_name: String
+			quantity_lvl_2: Int
+			quantity3_name: String
+			quantity_lvl_3: Int
 		): Item
 		addBarcode(itemId: ID!, barcode: String!): Item
 		removeBarcode(itemId: ID!, barcodeId: ID!): Item
