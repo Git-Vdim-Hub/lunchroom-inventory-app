@@ -129,183 +129,187 @@ export default function Item() {
 			{Auth.loggedIn() ? (
 				<div>
 					<div id="reader"></div>
-					<div className="flex flex-col md:flex-row justify-center gap-10 mt-3 md:mt-14 mx-8">
+					<div className="grid justify-items-center gap-10 mt-32 md:mt-44">
 						<form onSubmit={handleFormSubmit}>
-							<div className="flex flex-col justify-center w-72">
-								<label>Item ID:</label>
-								<input
-									className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"
-									onChange={(event) => {
-										const value = event.target.value;
-										setItemId(value);
-									}}
-									placeholder={item.item_id}
-								/>
-								<label>Description:</label>
-								<input
-									className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus"
-									type="text"
-									onChange={(event) => {
-										const value = event.target.value;
-										setItemDesc(value);
-									}}
-									placeholder={item.item_desc}
-								/>
-								<label>Location:</label>
-								<input
-									className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"
-									onChange={(event) => {
-										const value = event.target.value;
-										setItemLocation(value);
-									}}
-									placeholder={item.location}
-									type="text"
-								/>
-								<label>Barcodes:</label>
-
-								<div className="input-group">
+							<div className="md:grid md:grid-cols-2 md:gap-10">
+								<div className="flex flex-col justify-center w-72">
+									<label>Item ID:</label>
 									<input
-										className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-										placeholder={
-											item.scans[0]
-												? item.scans[0].barcode
-												: "Scan or Enter Barcode"
-										}
-										onChange={handleManualBarcode}
+										className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"
+										onChange={(event) => {
+											const value = event.target.value;
+											setItemId(value);
+										}}
+										placeholder={item.item_id}
+									/>
+									<label>Description:</label>
+									<textarea 
+										className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus"
+										type="text"
+										onChange={(event) => {
+											const value = event.target.value;
+											setItemDesc(value);
+										}}
+										placeholder={item.item_desc}
+									/>
+									<label>Location:</label>
+									<input
+										className="input input-bordered border-2 border-primary mb-4 hover:border-primary-focus"
+										onChange={(event) => {
+											const value = event.target.value;
+											setItemLocation(value);
+										}}
+										placeholder={item.location}
 										type="text"
 									/>
-									<button
-										onClick={handleBarcodeScanner}
-										className="border border-2 border-primary-focus bg-primary"
-									>
-										<i className="fa-solid fa-barcode text-neutral p-2 px-3"></i>
-									</button>
-								</div>
-								<div>
-									<div className="my-3 space-x-4">
-										<button onClick={handleAddBarcode} className="btn">
-											Save Barcode
+									<label>Barcodes:</label>
+
+									<div className="input-group">
+										<input
+											className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
+											placeholder={
+												item.scans[0]
+													? item.scans[0].barcode
+													: "Scan or Enter Barcode"
+											}
+											onChange={handleManualBarcode}
+											type="text"
+										/>
+										<button
+											onClick={handleBarcodeScanner}
+											className="border border-2 border-primary-focus bg-primary"
+										>
+											<i className="fa-solid fa-barcode text-neutral p-2 px-3"></i>
 										</button>
-										<label htmlFor="my-modal" className="btn">
-											Edit Barcodes
-										</label>
 									</div>
-									<input
-										type="checkbox"
-										id="my-modal"
-										className="modal-toggle"
-									/>
-									<div className="modal">
-										<div className="modal-box">
-											<h3 className="font-bold text-lg">
-												Registered Barcodes:
-											</h3>
-											<ul className="list-none divide-y my-2">
-												{arr.map((scan) => (
-													<li
-														key={scan._id}
-														data-key={scan._id}
-														className="flex justify-between"
-													>
-														<div>{scan.barcode}</div>
-														<button
-															onClick={handleRemoveBarcode}
-															className="btn btn-ghost fa-solid fa-trash"
-														></button>
-													</li>
-												))}
-											</ul>
-											<div className="modal-action">
-												<label htmlFor="my-modal" className="btn">
-													Done
-												</label>
+									<div>
+										<div className="my-3 space-x-4">
+											<button onClick={handleAddBarcode} className="btn">
+												Save Barcode
+											</button>
+											<label htmlFor="my-modal" className="btn">
+												Edit Barcodes
+											</label>
+										</div>
+										<input
+											type="checkbox"
+											id="my-modal"
+											className="modal-toggle"
+										/>
+										<div className="modal">
+											<div className="modal-box">
+												<h3 className="font-bold text-lg">
+													Registered Barcodes:
+												</h3>
+												<ul className="list-none divide-y my-2">
+													{arr.map((scan) => (
+														<li
+															key={scan._id}
+															data-key={scan._id}
+															className="flex justify-between"
+														>
+															<div>{scan.barcode}</div>
+															<button
+																onClick={handleRemoveBarcode}
+																className="btn btn-ghost fa-solid fa-trash"
+															></button>
+														</li>
+													))}
+												</ul>
+												<div className="modal-action">
+													<label htmlFor="my-modal" className="btn">
+														Done
+													</label>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-5">
-								<div className="flex flex-col">
-									<label>Level 1 Name:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										onChange={(event) => {
-											const value = event.target.value;
-											setQuantity1ItemName(value);
-										}}
-										placeholder={item.quantity1_name}
-										type="text"
-									/>
+								<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-8">
+									<div className="flex flex-col">
+										<label>Level 1 Name:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
+											onChange={(event) => {
+												const value = event.target.value;
+												setQuantity1ItemName(value);
+											}}
+											placeholder={item.quantity1_name}
+											type="text"
+										/>
+									</div>
+									<div className="flex flex-col">
+										<label>Level 1 Quantity:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
+											type="number"
+											onChange={(event) => {
+												const value = event.target.value;
+												setLvl1Quantity(value);
+											}}
+											placeholder={item.quantity_lvl_1}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<label>Level 2 Name:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
+											type="text"
+											onChange={(event) => {
+												const value = event.target.value;
+												setQuantity2ItemName(value);
+											}}
+											placeholder={item.quantity2_name}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<label>Level 2 Quantity:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
+											type="number"
+											onChange={(event) => {
+												const value = event.target.value;
+												setLvl2Quantity(value);
+											}}
+											placeholder={item.quantity_lvl_2}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<label>Level 3 Name:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
+											type="text"
+											onChange={(event) => {
+												const value = event.target.value;
+												setQuantity3ItemName(value);
+											}}
+											placeholder={item.quantity3_name}
+										/>
+									</div>
+									<div className="flex flex-col">
+										<label>Level 3 Quantity:</label>
+										<input
+											className="input input-bordered border-2 border-primary mb-6 w-32 hover:border-primary-focus"
+											type="number"
+											onChange={(event) => {
+												const value = event.target.value;
+												setLvl3Quantity(value);
+											}}
+											placeholder={item.quantity_lvl_3}
+										/>
+									</div>
+									<div className="flex justify-center gap-5 w-full col-span-2">
+										<button className="btn w-full" type="submit">
+											Update
+										</button>
+									</div>
 								</div>
-								<div className="flex flex-col">
-									<label>Level 1 Quantity:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										type="number"
-										onChange={(event) => {
-											const value = event.target.value;
-											setLvl1Quantity(value);
-										}}
-										placeholder={item.quantity_lvl_1}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<label>Level 2 Name:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										type="text"
-										onChange={(event) => {
-											const value = event.target.value;
-											setQuantity2ItemName(value);
-										}}
-										placeholder={item.quantity2_name}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<label>Level 2 Quantity:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										type="number"
-										onChange={(event) => {
-											const value = event.target.value;
-											setLvl2Quantity(value);
-										}}
-										placeholder={item.quantity_lvl_2}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<label>Level 3 Name:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										type="text"
-										onChange={(event) => {
-											const value = event.target.value;
-											setQuantity3ItemName(value);
-										}}
-										placeholder={item.quantity3_name}
-									/>
-								</div>
-								<div className="flex flex-col">
-									<label>Level 3 Quantity:</label>
-									<input
-										className="input input-bordered border-2 border-primary mb-4 w-32 hover:border-primary-focus"
-										type="number"
-										onChange={(event) => {
-											const value = event.target.value;
-											setLvl3Quantity(value);
-										}}
-										placeholder={item.quantity_lvl_3}
-									/>
-								</div>
-							</div>
-							<div className="flex justify-center gap-5">
-								<button className="btn md:w-36" type="submit">
-									Update
-								</button>
-								<button className="btn md:w-36">Delete</button>
-								<button className="btn md:w-36">Cancel</button>
 							</div>
 						</form>
+						<div className="w-full flex justify-center">
+							<button className="btn w-[145px] md:w-36 mx-2">Delete</button>
+							<button className="btn w-[145px] md:w-36 mx-2">Cancel</button>
+						</div>
 					</div>
 				</div>
 			) : (
