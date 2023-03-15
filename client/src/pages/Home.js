@@ -14,24 +14,21 @@ export default function Home() {
 	const queryByNum = useQuery(QUERY_BY_NUMBER, {
 		variables: { itemId: itemNumber },
 	});
-	console.log(queryByNum?.data);
 
 	const queryByBarcode = useQuery(QUERY_BY_BARCODE, {
 		variables: { barcode: scannedCode },
 	});
-	console.log(queryByBarcode?.data);
 
 	const handleInputChange = (event) => {
 		const userInput = event.target.value;
 		return setItemNumber(userInput);
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		if (itemNumber != "") {
-			window.location.assign(`/Item/${queryByNum?.data.itemByNum._id}`);
-		} else if (scannedCode != "") {
+	const handleSubmit = () => {
+		if (scannedCode != "") {
 			window.location.assign(`/Item/${queryByBarcode?.data.itemByBarcode._id}`);
+		} else if (itemNumber != "") {
+			window.location.assign(`/Item/${queryByNum?.data.itemByNum._id}`);
 		} else {
 			return;
 		}
