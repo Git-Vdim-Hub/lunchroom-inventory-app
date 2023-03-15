@@ -80,3 +80,27 @@ mutation Mutation($itemId: ID!) {
 	}
   }
 `;
+
+export const ADD_BARCODE = gql`
+	mutation addBarcode($itemId: ID!, $barcode: String!) {
+		addBarcode(itemId: $itemId, barcode: $barcode) {
+			_id
+			item_desc
+			scans {
+				_id
+				barcode
+			}
+		}
+	}
+`;
+
+export const REMOVE_BARCODE = gql`
+	mutation removeBarcode($itemId: ID!, $barcodeId: ID!) {
+		removeBarcode(itemId: $itemId, barcodeId: $barcodeId) {
+			scans {
+				barcode
+				_id
+			}
+		}
+	}
+`;

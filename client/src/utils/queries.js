@@ -63,4 +63,27 @@ query Query($itemId: ID!) {
 	  }
 	}
   }
-`
+`;
+
+export const QUERY_BY_BARCODE = gql`
+	query itemByBarcode($barcode: String) {
+		item(barcode: $barcode) {
+			_id
+			item_id
+			item_desc
+			location
+			quantity1_name
+			quantity_lvl_1
+			quantity2_name
+			quantity_lvl_2
+			quantity3_name
+			quantity_lvl_3
+			scans {
+				_id
+				barcode
+			}
+			last_modified
+			formated_date
+		}
+	}
+`;

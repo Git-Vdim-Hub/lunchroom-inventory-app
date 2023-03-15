@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
 
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
+import { QUERY_BY_BARCODE } from "../utils/queries";
+
+
 
 export default function Home() {
 	const [itemNumber, setItemNumber] = useState("");
 	const [scannedCode, setScannedCode] = useState("");
+	const { loading, error, data } = useQuery(QUERY_BY_BARCODE, {
+		variables: { barcode: scannedCode },
+	});
+	console.log(data?.item);
 
 	const handleInputChange = (event) => {
 		const userInput = event.target.value;
