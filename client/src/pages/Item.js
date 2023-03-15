@@ -143,7 +143,7 @@ export default function Item() {
 										placeholder={item.item_id}
 									/>
 									<label>Description:</label>
-									<input
+									<textarea 
 										className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus"
 										type="text"
 										onChange={(event) => {
@@ -225,7 +225,7 @@ export default function Item() {
 										</div>
 									</div>
 								</div>
-								<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-5">
+								<div className="grid grid-cols-2 justify-items-center mt-3 md:gap-8">
 									<div className="flex flex-col">
 										<label>Level 1 Name:</label>
 										<input
@@ -298,14 +298,13 @@ export default function Item() {
 											placeholder={item.quantity_lvl_3}
 										/>
 									</div>
+									<div className="flex justify-center gap-5 w-full col-span-2">
+										<button className="btn w-full" type="submit">
+											Update
+										</button>
+									</div>
 								</div>
-						
 							</div>
-								<div className="flex justify-center gap-5 w-full">
-									<button className="btn w-full" type="submit">
-										Update
-									</button>
-								</div>
 						</form>
 						<div className="w-full flex justify-center">
 							<button className="btn w-[145px] md:w-36 mx-2">Delete</button>
