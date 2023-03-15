@@ -42,32 +42,30 @@ export const QUERY_ITEMS = gql`
 		}
 	}
 `;
+
 export const QUERY_SINGLE_ITEM = gql`
 	query Query($itemId: ID!) {
 		item(id: $itemId) {
 			_id
-			formated_date
-			item_desc
 			item_id
-			last_modified
+			item_desc
 			location
 			quantity1_name
-			quantity2_name
-			quantity3_name
 			quantity_lvl_1
+			quantity2_name
 			quantity_lvl_2
+			quantity3_name
 			quantity_lvl_3
-			scans {
-				_id
-				barcode
-			}
+			barcodes
+			last_modified
+			formated_date
 		}
 	}
 `;
 
 export const QUERY_BY_BARCODE = gql`
-	query itemByBarcode($barcode: String) {
-		item(barcode: $barcode) {
+	query ItemByBarcode($barcode: String) {
+		itemByBarcode(barcode: $barcode) {
 			_id
 			item_id
 			item_desc
@@ -78,10 +76,27 @@ export const QUERY_BY_BARCODE = gql`
 			quantity_lvl_2
 			quantity3_name
 			quantity_lvl_3
-			scans {
-				_id
-				barcode
-			}
+			barcodes
+			last_modified
+			formated_date
+		}
+	}
+`;
+
+export const QUERY_BY_NUMBER = gql`
+	query ItemByNum($itemId: String) {
+		itemByNum(item_id: $itemId) {
+			_id
+			item_id
+			item_desc
+			location
+			quantity1_name
+			quantity_lvl_1
+			quantity2_name
+			quantity_lvl_2
+			quantity3_name
+			quantity_lvl_3
+			barcodes
 			last_modified
 			formated_date
 		}
