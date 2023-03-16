@@ -5,26 +5,33 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 
 import Auth from "../utils/auth";
 import { redirect } from "../utils/helpers";
-import { QUERY_BY_BARCODE } from "../utils/queries";
+import { QUERY_BY_BARCODE, QUERY_BY_NUMBER } from "../utils/queries";
 
 export default function Home() {
 	const [itemNumber, setItemNumber] = useState("");
-	const [scannedCode, setScannedCode] = useState();
+	const [scannedCode, setScannedCode] = useState("");
 
-	const { loading, error, data } = useQuery(QUERY_BY_BARCODE, {
+	const queryByNum = useQuery(QUERY_BY_NUMBER, {
+		variables: { itemId: itemNumber },
+	});
+
+	const queryByBarcode = useQuery(QUERY_BY_BARCODE, {
 		variables: { barcode: scannedCode },
 	});
-	console.log(data?.item);
 
 	const handleInputChange = (event) => {
 		const userInput = event.target.value;
 		return setItemNumber(userInput);
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		console.log("item number submitted", itemNumber);
-		setItemNumber("");
+	const handleSubmit = () => {
+		if (scannedCode != "") {
+			window.location.assign(`/Item/${queryByBarcode?.data.itemByBarcode._id}`);
+		} else if (itemNumber != "") {
+			window.location.assign(`/Item/${queryByNum?.data.itemByNum._id}`);
+		} else {
+			return;
+		}
 	};
 
 	const handleVisibility = () => {
@@ -39,38 +46,6 @@ export default function Home() {
 			btnContainer.classList.remove("hidden");
 		}
 	};
-
-	// const queryItemByBarcode = () => {
-	// 	try {
-	// 		itemByBarcode({
-	// 			variables: { barcode: scannedCode },
-	// 		});
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 		return (
-	// 			<div>
-	// 				<div className="alert alert-warning shadow-lg">
-	// 					<div>
-	// 						<svg
-	// 							xmlns="http://www.w3.org/2000/svg"
-	// 							className="stroke-current flex-shrink-0 h-6 w-6"
-	// 							fill="none"
-	// 							viewBox="0 0 24 24"
-	// 						>
-	// 							<path
-	// 								strokeLinecap="round"
-	// 								strokeLinejoin="round"
-	// 								strokeWidth="2"
-	// 								d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-	// 							/>
-	// 						</svg>
-	// 						<span>Failed to scan or find item with that barcode</span>
-	// 					</div>
-	// 				</div>
-	// 			</div>
-	// 		);
-	// 	}
-	// };
 
 	const handleBarcodeScanner = () => {
 		console.log("scan barcode");

@@ -143,7 +143,7 @@ export default function Item() {
 										placeholder={item.item_id}
 									/>
 									<label>Description:</label>
-									<textarea 
+									<textarea
 										className="input input-bordered border-2 border-primary mb-4 h-28 hover:border-primary-focus"
 										type="text"
 										onChange={(event) => {
@@ -167,11 +167,7 @@ export default function Item() {
 									<div className="input-group">
 										<input
 											className="input input-bordered border-2 border-primary w-72 hover:border-primary-focus"
-											placeholder={
-												item.scans[0]
-													? item.scans[0].barcode
-													: "Scan or Enter Barcode"
-											}
+											placeholder={"Scan or Enter Barcode"}
 											onChange={handleManualBarcode}
 											type="text"
 										/>
