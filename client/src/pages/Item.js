@@ -18,7 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
-	console.log(item);
+	// console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
@@ -58,14 +58,14 @@ export default function Item() {
 		for (let scan in item.barcodes) {
 			arr.push(item.barcodes[scan]);
 		}
-		console.log("arr:", arr);
+		// console.log("arr:", arr);
 		return arr;
 	};
 	// call function
 	displayBarcodes();
 
 	const handleAddBarcode = () => {
-		console.log({ itemId, barcode });
+		// console.log({ itemId, barcode });
 		addBarcode({ variables: { itemId, barcode } });
 		window.location.reload();
 	};
@@ -107,7 +107,7 @@ export default function Item() {
 	}
 
 	const handleBarcodeScanner = () => {
-		console.log("scan barcode");
+		// console.log("scan barcode");
 		// This method will trigger user permissions
 		const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
 			fps: 10,
