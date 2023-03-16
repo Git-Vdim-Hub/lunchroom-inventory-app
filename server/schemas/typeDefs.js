@@ -54,7 +54,7 @@ const typeDefs = gql`
 			quantity3_name: String
 			quantity_lvl_3: Int
 		): Item
-		addBarcode(itemId: ID!, barcodes: String!): Item
+		addBarcode(itemId: ID!, barcode: String!): Item
 		removeBarcode(itemId: ID!, barcode: String!): Item
 		removeItem(itemId: ID!): Item
 		updateItem(
