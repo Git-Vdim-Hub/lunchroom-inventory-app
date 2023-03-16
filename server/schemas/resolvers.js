@@ -114,13 +114,11 @@ const resolvers = {
 				}
 			);
 		},
-		removeBarcode: async (parent, { itemId, barcodeId }) => {
-			return Item.findOneAndUpdate(
-				{ _id: itemId },
+		removeBarcode: async (parent, { itemId, barcode }) => {
+			return Item.findByIdAndUpdate(
+				itemId,
 				{
-					$pull: {
-						barcodes: barcode,
-					},
+					$pull: { barcodes: barcode },
 				},
 				{ new: true }
 			);
