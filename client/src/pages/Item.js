@@ -83,7 +83,7 @@ export default function Item() {
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			return await updateItem({
+			const itemUpdate = await updateItem({
 				variables: {
 					updateItemId: itemId,
 					itemId: item1Id,
@@ -97,6 +97,8 @@ export default function Item() {
 					quantityLvl3: parseInt(lvl3Quantity),
 				},
 			});
+			window.location.assign("/Home");
+			return itemUpdate;
 		} catch (err) {
 			console.error(err);
 		}
