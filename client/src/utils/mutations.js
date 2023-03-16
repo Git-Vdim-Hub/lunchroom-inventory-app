@@ -90,10 +90,7 @@ export const UPDATE_ITEM = gql`
 			quantity_lvl_2
 			quantity3_name
 			quantity_lvl_3
-			scans {
-				_id
-				barcode
-			}
+			barcodes
 			last_modified
 			formated_date
 		}
