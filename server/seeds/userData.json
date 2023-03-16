@@ -1,5 +1,12 @@
-{
-	"username": "administrator",
-	"email": "admin@email.com",
-	"password": "securepass1234"
-}
+[
+	{
+		"username": "akriddle",
+		"email": "placehold@email.com",
+		"password": "password123"
+	},
+	{
+		"username": "admin",
+		"email": "admin@email.com",
+		"password": "securepass12"
+	}
+]
