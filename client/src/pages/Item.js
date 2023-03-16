@@ -55,10 +55,10 @@ export default function Item() {
 	let arr = [];
 	// function to iterate through barcodes and push each barcode to empty array
 	const displayBarcodes = () => {
-		for (let scan in item.scans) {
-			arr.push(item.scans[scan]);
+		for (let scan in item.barcodes) {
+			arr.push(item.barcodes[scan]);
 		}
-		// console.log("arr:", arr);
+		console.log("arr:", arr);
 		return arr;
 	};
 	// call function
@@ -76,8 +76,8 @@ export default function Item() {
 
 	const [removeBarcode] = useMutation(REMOVE_BARCODE);
 	const handleRemoveBarcode = (event) => {
-		let barcodeId = event.target.parentElement.dataset.key;
-		removeBarcode({ variables: { itemId, barcodeId } });
+		let barcode = event.target.parentElement.dataset.key;
+		removeBarcode({ variables: { itemId, barcode } });
 		window.location.reload();
 	};
 	const handleFormSubmit = async (event) => {
@@ -198,13 +198,13 @@ export default function Item() {
 													Registered Barcodes:
 												</h3>
 												<ul className="list-none divide-y my-2">
-													{arr.map((scan) => (
+													{arr.map((barcode) => (
 														<li
-															key={scan._id}
-															data-key={scan._id}
+															key={barcode}
+															data-key={barcode}
 															className="flex justify-between"
 														>
-															<div>{scan.barcode}</div>
+															<div>{barcode}</div>
 															<button
 																onClick={handleRemoveBarcode}
 																className="btn btn-ghost fa-solid fa-trash"

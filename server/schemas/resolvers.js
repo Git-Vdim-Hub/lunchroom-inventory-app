@@ -105,7 +105,7 @@ const resolvers = {
 				{ _id: itemId },
 				{
 					$addToSet: {
-						barcodes: { barcode },
+						barcodes: barcode,
 					},
 				},
 				{

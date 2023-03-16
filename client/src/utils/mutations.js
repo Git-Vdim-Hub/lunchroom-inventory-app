@@ -98,25 +98,23 @@ export const UPDATE_ITEM = gql`
 `;
 
 export const ADD_BARCODE = gql`
-	mutation addBarcode($itemId: ID!, $barcode: String!) {
+	mutation Mutation($itemId: ID!, $barcode: String!) {
 		addBarcode(itemId: $itemId, barcode: $barcode) {
 			_id
+			item_id
 			item_desc
-			scans {
-				_id
-				barcode
-			}
+			barcodes
 		}
 	}
 `;
 
 export const REMOVE_BARCODE = gql`
-	mutation removeBarcode($itemId: ID!, $barcodeId: ID!) {
-		removeBarcode(itemId: $itemId, barcodeId: $barcodeId) {
-			scans {
-				barcode
-				_id
-			}
+	mutation Mutation($itemId: ID!, $barcode: String!) {
+		removeBarcode(itemId: $itemId, barcode: $barcode) {
+			_id
+			item_id
+			item_desc
+			barcodes
 		}
 	}
 `;
