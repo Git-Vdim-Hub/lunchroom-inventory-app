@@ -18,7 +18,7 @@ export default function Item() {
 	});
 
 	const item = data?.item || {};
-	console.log(item);
+	// console.log(item);
 	const [item1Id, setItemId] = useState();
 	const [itemDesc, setItemDesc] = useState();
 	const [itemLocation, setItemLocation] = useState();
@@ -55,8 +55,8 @@ export default function Item() {
 	let arr = [];
 	// function to iterate through barcodes and push each barcode to empty array
 	const displayBarcodes = () => {
-		for (let scan in item.scans) {
-			arr.push(item.scans[scan]);
+		for (let scan in item.barcodes) {
+			arr.push(item.barcodes[scan]);
 		}
 		// console.log("arr:", arr);
 		return arr;
@@ -65,7 +65,7 @@ export default function Item() {
 	displayBarcodes();
 
 	const handleAddBarcode = () => {
-		console.log({ itemId, barcode });
+		// console.log({ itemId, barcode });
 		addBarcode({ variables: { itemId, barcode } });
 		window.location.reload();
 	};
@@ -76,14 +76,14 @@ export default function Item() {
 
 	const [removeBarcode] = useMutation(REMOVE_BARCODE);
 	const handleRemoveBarcode = (event) => {
-		let barcodeId = event.target.parentElement.dataset.key;
-		removeBarcode({ variables: { itemId, barcodeId } });
+		let barcode = event.target.parentElement.dataset.key;
+		removeBarcode({ variables: { itemId, barcode } });
 		window.location.reload();
 	};
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			return await updateItem({
+			const itemUpdate = await updateItem({
 				variables: {
 					updateItemId: itemId,
 					itemId: item1Id,
@@ -97,6 +97,8 @@ export default function Item() {
 					quantityLvl3: parseInt(lvl3Quantity),
 				},
 			});
+			window.location.assign("/Home");
+			return itemUpdate;
 		} catch (err) {
 			console.error(err);
 		}
@@ -107,7 +109,7 @@ export default function Item() {
 	}
 
 	const handleBarcodeScanner = () => {
-		console.log("scan barcode");
+		// console.log("scan barcode");
 		// This method will trigger user permissions
 		const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
 			fps: 10,
@@ -198,13 +200,13 @@ export default function Item() {
 													Registered Barcodes:
 												</h3>
 												<ul className="list-none divide-y my-2">
-													{arr.map((scan) => (
+													{arr.map((barcode) => (
 														<li
-															key={scan._id}
-															data-key={scan._id}
+															key={barcode}
+															data-key={barcode}
 															className="flex justify-between"
 														>
-															<div>{scan.barcode}</div>
+															<div>{barcode}</div>
 															<button
 																onClick={handleRemoveBarcode}
 																className="btn btn-ghost fa-solid fa-trash"
