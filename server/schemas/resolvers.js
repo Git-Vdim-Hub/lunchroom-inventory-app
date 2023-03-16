@@ -84,7 +84,6 @@ const resolvers = {
 				quantity_lvl_2,
 				quantity3_name,
 				quantity_lvl_3,
-				scans,
 			}
 		) => {
 			return await Item.create({
@@ -97,7 +96,6 @@ const resolvers = {
 				quantity_lvl_2,
 				quantity3_name,
 				quantity_lvl_3,
-				scans,
 			});
 		},
 		addBarcode: async (parent, { itemId, barcode }) => {
